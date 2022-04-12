@@ -31,6 +31,7 @@ const typography = {
     fontSize: "1.5rem",
     fontWeight: 600,
     lineHeight: 1.25,
+    color: "#FD9827",
   },
   h4: {
     fontSize: "1.125rem",

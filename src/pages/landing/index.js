@@ -21,12 +21,12 @@ function Home() {
             <Grid item xs={6}>
               <Grid container direction="column" spacing={2}>
                 <Grid item>
-                  <Typography variant="h3">
+                  <Typography variant="h3" sx={{ color: "#000" }}>
                     Design a Native Mobile App
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="h6">
+                  <Typography variant="h6" color="default">
                     Subscribe and start your project today for{" "}
                     <Link to="/start">FREE</Link>
                   </Typography>
@@ -43,7 +43,7 @@ function Home() {
             <Grid item xs={8}>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <Typography variant="h3" color="textSecondary">
+                  <Typography variant="h3">
                     What Can <Link to="#">Carrot</Link> Do For You?
                   </Typography>
                 </Grid>
