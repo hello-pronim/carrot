@@ -4,7 +4,6 @@ import styled, { ThemeProvider } from "styled-components/macro";
 
 import { Container, CssBaseline } from "@mui/material";
 import { ThemeProvider as MuiThemeProvider } from "@mui/material/styles";
-import { spacing } from "@mui/system";
 
 import { THEMES } from "../constants";
 import createTheme from "../theme";
@@ -30,14 +29,8 @@ const AppContent = styled.div`
 `;
 
 const ScrollableContent = styled.div`
-  display: flex;
-  align-items: center;
   overflow-y: scroll;
   height: calc(100vh - 64px);
-`;
-
-const Wrapper = styled.div`
-  ${spacing};
 `;
 
 const Landing = ({ children }) => {
@@ -49,14 +42,12 @@ const Landing = ({ children }) => {
           <GlobalStyle />
           <AppContent>
             <AppBar />
-            <Wrapper>
-              <Container>
-                <ScrollableContent>
-                  {children}
-                  <Outlet />
-                </ScrollableContent>
-              </Container>
-            </Wrapper>
+            <Container>
+              <ScrollableContent>
+                {children}
+                <Outlet />
+              </ScrollableContent>
+            </Container>
           </AppContent>
         </Root>
       </ThemeProvider>

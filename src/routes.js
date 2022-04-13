@@ -60,6 +60,7 @@ import AdvancedTable from "./components/mui/tables/AdvancedTable";
 
 // Landing
 import Landing from "./pages/landing";
+import Start from "./pages/landing/start";
 
 // Protected routes
 import ProtectedPage from "./pages/samples/protected/ProtectedPage";
@@ -91,6 +92,10 @@ const routes = [
       {
         path: "",
         element: <Landing />,
+      },
+      {
+        path: "/start",
+        element: <Start />,
       },
     ],
   },

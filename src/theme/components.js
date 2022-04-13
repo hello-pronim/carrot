@@ -146,6 +146,20 @@ const components = {
       },
     },
   },
+  MuiStepLabel: {
+    styleOverrides: {
+      root: {
+        "& .MuiStepLabel-label": {
+          "&.Mui-active": {
+            color: "#FD9827",
+          },
+          "&:not(.Mui-active)": {
+            display: "none",
+          },
+        },
+      },
+    },
+  },
 };
 
 export default components;
