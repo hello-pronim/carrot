@@ -1,16 +1,8 @@
 import React from "react";
-import styled from "styled-components/macro";
-import { Grid, TextField as MuiTextField, Typography } from "@mui/material";
+import { Grid, TextField, Typography } from "@mui/material";
 
 import Button from "../../components/common/button";
 import Link from "../../components/common/link";
-
-const TextField = styled(MuiTextField)`
-  background-color: #fff;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0px 0px 4px 0px #00000040;
-`;
 
 function Home() {
   return (
@@ -52,6 +44,7 @@ function Home() {
                     <Grid item xs={10}>
                       <TextField
                         placeholder="Enter a Job Title to Get Started"
+                        variant="outlined"
                         size="small"
                         fullWidth
                       />

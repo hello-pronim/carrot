@@ -32,6 +32,19 @@ const components = {
       },
     },
   },
+  MuiInputBase: {
+    styleOverrides: {
+      root: {
+        backgroundColor: " #FFF",
+        border: "none",
+        borderRadius: "10px",
+        boxShadow: " 0px 0px 4px 0px #00000040",
+        "& .MuiOutlinedInput-notchedOutline": {
+          borderColor: "transparent",
+        },
+      },
+    },
+  },
   MuiPaper: {
     styleOverrides: {
       root: {
