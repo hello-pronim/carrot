@@ -21,24 +21,7 @@ import {
 } from "react-icons/fa";
 
 import MuiButton from "../../components/common/button";
-import { ReactComponent as Logo } from "../../vendor/logo.svg";
-
-const Brand = styled.div`
-  font-size: ${(props) => props.theme.typography.h5.fontSize};
-  font-weight: ${(props) => props.theme.typography.fontWeightMedium};
-  font-family: ${(props) => props.theme.typography.fontFamily};
-`;
-
-const BrandIcon = styled(Logo)`
-  margin-right: ${(props) => props.theme.spacing(2)};
-  margin-top: -2px;
-  color: ${(props) => props.theme.sidebar.header.brand.color};
-  fill: ${(props) => props.theme.sidebar.header.brand.color};
-  width: 32px;
-  height: 32px;
-  vertical-align: middle;
-  display: inline;
-`;
+import Logo from "../../vendor/logo.png";
 
 const Button = styled(MuiButton)(spacing);
 
@@ -57,10 +40,7 @@ const AppBarComponent = () => (
         <Container>
           <Grid container alignItems="center">
             <Grid item>
-              <Brand>
-                <BrandIcon />
-                Material App
-              </Brand>
+              <Box component="img" alt="logo" src={Logo} />
             </Grid>
             <Grid item xs />
             <Grid item>
