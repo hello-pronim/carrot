@@ -22,22 +22,30 @@ function Home() {
           <Grid item xs={12}>
             <Grid container alignItems="center">
               <Grid item xs={6}>
-                <Grid container direction="column" spacing={2}>
-                  <Grid item>
-                    <Typography variant="h3" sx={{ color: "#000" }}>
-                      Design a Native Mobile App
-                    </Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h6" color="default">
-                      Subscribe and start your project today for{" "}
-                      <Link to="/start">FREE</Link>
-                    </Typography>
+                <Grid container justifyContent="center">
+                  <Grid item xs={10}>
+                    <Grid container direction="column" spacing={2}>
+                      <Grid item>
+                        <Typography variant="h3" sx={{ color: "#000" }}>
+                          Design a Native Mobile App
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="h6" color="default">
+                          Subscribe and start your project today for{" "}
+                          <Link to="/start">FREE</Link>
+                        </Typography>
+                      </Grid>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
               <Grid item xs={6}>
-                <img alt="True Bill" src="/static/img/truebill.png" />
+                <Grid container justifyContent="center">
+                  <Grid item xs={10}>
+                    <img alt="True Bill" src="/static/img/truebill.png" />
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>

@@ -1,37 +1,32 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-import {
-  Box,
-  Grid,
-  Step,
-  StepButton,
-  StepContent,
-  StepLabel,
-  Stepper,
-  Typography,
-} from "@mui/material";
+import { Grid, Step, StepButton, StepLabel, Stepper } from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { spacing } from "@mui/system";
 
-import Button from "../../../components/common/button";
 import StepConnector from "../../../components/common/stepConnector";
 import StepIconRoot from "../../../components/common/stepIcon";
 
-import { projectTypes } from "./mock";
+import ProjectType from "./ProjectType";
+import Website from "./website";
+import MobileApp from "./mobileApp";
+
+import { projectTypeData } from "./mock";
 
 const Spacer = styled.div(spacing);
 
 const StepperWrapper = styled.div`
   position: absolute;
-  top: 0;
+  top: -108px;
   width: 100%;
 `;
 
 const StepperContentWrapper = styled.div`
   width: 100%;
-  padding-top: 108px;
-  height: calc(100vh - 64px);
+  margin-top: 108px;
+  padding-bottom: 108px;
+  height: calc(100vh - 172px);
   overflow-y: scroll;
 `;
 
@@ -41,9 +36,10 @@ const Wrapper = styled.div`
 `;
 
 const steps = [
-  { label: "Step 1", step: 1, icon: <SettingsIcon /> },
-  { label: "Step 2", step: 2, icon: <SettingsIcon /> },
-  { label: "Step 3", step: 3, icon: <SettingsIcon /> },
+  { label: "Basics", step: 1 },
+  { label: "Plan", step: 2 },
+  { label: "Subscribe", step: 3 },
+  { label: "Login", step: 4 },
 ];
 
 function StepIcon(props) {
@@ -57,7 +53,7 @@ function StepIcon(props) {
 
 function Start() {
   const [activeStep, setActiveStep] = useState(0);
-  const [selectedProjectTypes, setSelectedProjectTypes] = useState([]);
+  const [selectedProjectType, setSelectedProjectType] = useState("");
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -65,23 +61,15 @@ function Start() {
   const handleStepClick = (stepId) => {
     setActiveStep(stepId);
   };
-  const isProjectTypeSelected = (projectTypeId) => {
-    return (
-      selectedProjectTypes.filter((typeItem) => typeItem.id === projectTypeId)
-        .length > 0
-    );
-  };
-  const handleProjectTypeSelect = (projectTypeId) => {
-    const projectType = projectTypes.find(
-      (typeItem) => typeItem.id === projectTypeId
-    );
 
-    setSelectedProjectTypes(
-      isProjectTypeSelected(projectTypeId)
-        ? selectedProjectTypes.filter(
-            (typeItem) => typeItem.id === projectTypeId
-          )
-        : [...selectedProjectTypes, projectType]
+  const renderProjectDetail = () => {
+    console.log(selectedProjectType);
+    return selectedProjectType === "website" ? (
+      <Website />
+    ) : selectedProjectType === "mobile_app" ? (
+      <MobileApp />
+    ) : (
+      <></>
     );
   };
 
@@ -118,38 +106,15 @@ function Start() {
             <StepperContentWrapper>
               <Grid container spacing={8}>
                 <Grid item xs={12}>
-                  <Grid container spacing={4}>
-                    <Grid item xs={12}>
-                      <Box pl={4}>
-                        <Typography variant="h3">Project Type</Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Grid container spacing={4}>
-                        {projectTypes.map((typeItem) => (
-                          <Grid key={typeItem.id} item xs={4}>
-                            <Button
-                              onClick={() =>
-                                handleProjectTypeSelect(typeItem.id)
-                              }
-                              color={
-                                isProjectTypeSelected(typeItem.id)
-                                  ? "primary"
-                                  : "secondary"
-                              }
-                              variant="contained"
-                              fullWidth
-                            >
-                              {typeItem.type}
-                            </Button>
-                          </Grid>
-                        ))}
-                      </Grid>
-                    </Grid>
-                  </Grid>
+                  <ProjectType
+                    data={projectTypeData}
+                    selected={selectedProjectType}
+                    setSelected={setSelectedProjectType}
+                  />
                 </Grid>
-                <Grid item xs={12}></Grid>
-                <Grid item xs={12}></Grid>
+                <Grid item xs={12}>
+                  {renderProjectDetail()}
+                </Grid>
               </Grid>
             </StepperContentWrapper>
           </Wrapper>

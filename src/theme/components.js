@@ -32,16 +32,28 @@ const components = {
       },
     },
   },
-  MuiInputBase: {
+  MuiOutlinedInput: {
     styleOverrides: {
       root: {
-        backgroundColor: " #FFF",
+        backgroundColor: "#FFF",
         border: "none",
         borderRadius: "10px",
         boxShadow: " 0px 0px 4px 0px #00000040",
+        "&.MuiInputBase-multiline": {
+          padding: "16px",
+          fontSize: "14px",
+          fontWeight: "bold",
+        },
         "& .MuiOutlinedInput-notchedOutline": {
           borderColor: "transparent",
         },
+      },
+    },
+  },
+  MuiFormControl: {
+    styleOverrides: {
+      root: {
+        padding: "4px",
       },
     },
   },
