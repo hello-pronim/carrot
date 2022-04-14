@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components/macro";
 
 import { Grid, Step, StepButton, StepLabel, Stepper } from "@mui/material";
-import SettingsIcon from "@mui/icons-material/Settings";
 import { spacing } from "@mui/system";
 
+import RadioButton from "../../../components/common/radioButton";
 import StepConnector from "../../../components/common/stepConnector";
 import StepIconRoot from "../../../components/common/stepIcon";
 
-import ProjectType from "./ProjectType";
 import Website from "./website";
 import MobileApp from "./mobileApp";
 
@@ -53,7 +52,7 @@ function StepIcon(props) {
 
 function Start() {
   const [activeStep, setActiveStep] = useState(0);
-  const [selectedProjectType, setSelectedProjectType] = useState("");
+  const [selectedProjectType, setSelectedProjectType] = useState("website");
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -106,10 +105,12 @@ function Start() {
             <StepperContentWrapper>
               <Grid container spacing={8}>
                 <Grid item xs={12}>
-                  <ProjectType
+                  <RadioButton
+                    label="Project Type"
                     data={projectTypeData}
                     selected={selectedProjectType}
                     setSelected={setSelectedProjectType}
+                    variant="contained"
                   />
                 </Grid>
                 <Grid item xs={12}>

@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Grid } from "@mui/material";
 
-import CompletionStatus from "../CompletionStatus";
-import Platforms from "../Platforms";
+import RadioButton from "../../../../components/common/radioButton";
 
 import { completionStatus, platforms } from "../mock";
 
@@ -14,15 +13,16 @@ const MobileApp = () => {
   return (
     <Grid container spacing={4}>
       <Grid item xs={12}>
-        <CompletionStatus
+        <RadioButton
+          label="Completion Status"
           data={completionStatus}
           selected={selectedCompletionStatus}
           setSelected={setSelectedCompletionStatus}
         />
       </Grid>
       <Grid item xs={12}>
-        <Platforms
-          title="Platforms"
+        <RadioButton
+          label="Platforms"
           data={platforms.filter(
             (platform) => platform.projectType === "mobile_app"
           )}

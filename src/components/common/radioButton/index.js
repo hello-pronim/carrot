@@ -10,9 +10,23 @@ const RadioButton = ({
   selected,
   setSelected,
   variant = "contained",
+  mode = "single", // single/multiple
 }) => {
+  const isSelected = (value) => {
+    return mode === "single"
+      ? selected === value
+      : mode === "multiple"
+      ? selected.includes(value)
+      : false;
+  };
   const handlePlatformSelect = (value) => {
-    setSelected(value);
+    if (mode === "single") {
+      setSelected(value);
+    } else if (mode === "multiple") {
+      if (isSelected(value))
+        setSelected(selected.filter((item) => item.value !== value));
+      else setSelected([...selected, value]);
+    }
   };
 
   return (
@@ -28,9 +42,9 @@ const RadioButton = ({
             <Grid key={item.value} item xs={4}>
               <Button
                 onClick={() => handlePlatformSelect(item.value)}
-                color={item.value === selected ? "primary" : "secondary"}
+                color={isSelected(item.value) ? "primary" : "secondary"}
                 sx={{
-                  fontWeight: item.value === selected && "bold",
+                  fontWeight: isSelected(item.value) && "bold",
                 }}
                 variant={variant}
                 fullWidth
