@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import {
   AppBar,
   Box,
+  Button as MuiButton,
   Container,
   Grid,
   IconButton as MuiIconButton,
@@ -20,7 +21,6 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
-import MuiButton from "../../components/common/button";
 import Logo from "../../vendor/logo.png";
 
 const Button = styled(MuiButton)(spacing);

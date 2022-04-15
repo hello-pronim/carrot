@@ -7,7 +7,9 @@ const Description = () => {
     <Grid container spacing={4}>
       <Grid item xs={12}>
         <Box pl={4}>
-          <Typography variant="h3">Description</Typography>
+          <Typography variant="h3" color="primary">
+            Description
+          </Typography>
         </Box>
       </Grid>
       <Grid item xs={12}>

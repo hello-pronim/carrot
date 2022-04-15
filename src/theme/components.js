@@ -3,6 +3,13 @@ const components = {
     defaultProps: {
       disableRipple: true,
     },
+    styleOverrides: {
+      root: {
+        "&.MuiButton-contained": {
+          borderRadius: "7px",
+        },
+      },
+    },
   },
   MuiLink: {
     defaultProps: {
@@ -39,6 +46,13 @@ const components = {
       },
     },
   },
+  MuiFormControl: {
+    styleOverrides: {
+      root: {
+        padding: "4px",
+      },
+    },
+  },
   MuiOutlinedInput: {
     styleOverrides: {
       root: {
@@ -54,13 +68,6 @@ const components = {
         "& .MuiOutlinedInput-notchedOutline": {
           borderColor: "transparent",
         },
-      },
-    },
-  },
-  MuiFormControl: {
-    styleOverrides: {
-      root: {
-        padding: "4px",
       },
     },
   },
@@ -175,6 +182,35 @@ const components = {
           "&:not(.Mui-active)": {
             display: "none",
           },
+        },
+      },
+    },
+  },
+  MuiToggleButtonGroup: {
+    styleOverrides: {
+      root: {
+        borderRadius: "10px",
+        boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",
+      },
+    },
+  },
+  MuiToggleButton: {
+    styleOverrides: {
+      root: {
+        border: "none",
+        borderRadius: "10px",
+        padding: "6px 16px",
+        transition:
+          "background-color 250ms cubic-bezier(0.4,0,0.2,1) 0ms,box-shadow 250ms cubic-bezier(0.4,0,0.2,1) 0ms,border-color 250ms cubic-bezier(0.4,0,0.2,1) 0ms,color 250ms cubic-bezier(0.4,0,0.2,1) 0ms",
+        "&.MuiToggleButton-primary": {
+          color: "#FFF",
+          backgroundColor: "#FD9827",
+          "&:hover": {
+            backgroundColor: "#B16A1B",
+          },
+        },
+        "&.MuiToggleButtonGroup-grouped:not(:last-of-type)": {
+          borderRight: "2px solid #FFF",
         },
       },
     },

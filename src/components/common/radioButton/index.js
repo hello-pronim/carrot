@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Box, Grid, Typography } from "@mui/material";
-
-import Button from "../../../components/common/button";
+import { Box, Button, Grid, Typography } from "@mui/material";
 
 const RadioButton = ({
   label = "Please select",
