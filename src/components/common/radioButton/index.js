@@ -6,6 +6,7 @@ import Button from "../../../components/common/button";
 
 const RadioButton = ({
   label = "Please select",
+  description,
   data,
   selected,
   setSelected,
@@ -33,7 +34,24 @@ const RadioButton = ({
     <Grid container spacing={4}>
       <Grid item xs={12}>
         <Box pl={4}>
-          <Typography variant="h3">{label}</Typography>
+          <Grid container alignItems="center" spacing={2}>
+            <Grid item>
+              <Typography variant="h3" color="primary">
+                {label}
+              </Typography>
+            </Grid>
+            {description && (
+              <Grid item>
+                <Typography
+                  variant="h6"
+                  color="secondary"
+                  sx={{ fontWeight: 400, fontStyle: "italic" }}
+                >
+                  {description}
+                </Typography>
+              </Grid>
+            )}
+          </Grid>
         </Box>
       </Grid>
       <Grid item xs={12}>

@@ -4,6 +4,7 @@ import { THEMES } from "../constants";
 
 const primary = "#FD9827";
 const secondary = "#9797DD";
+const dark = "#434343";
 const customBlue = {
   50: "#e9f0fb",
   100: "#c8daf4",
@@ -32,6 +33,11 @@ const defaultVariant = {
     background: {
       default: "#F7F9FC",
       paper: "#FFF",
+    },
+    text: {
+      primary: primary,
+      secondary: secondary,
+      dark: dark,
     },
   },
   header: {

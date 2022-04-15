@@ -32,6 +32,13 @@ const components = {
       },
     },
   },
+  MuiInputBase: {
+    styleOverrides: {
+      root: {
+        color: "#434343",
+      },
+    },
+  },
   MuiOutlinedInput: {
     styleOverrides: {
       root: {

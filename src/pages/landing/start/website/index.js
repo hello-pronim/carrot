@@ -49,6 +49,7 @@ const Website = () => {
       <Grid item xs={12}>
         <RadioButton
           label="Features Needed"
+          description="(Select all that apply)"
           data={features}
           selected={selectedFeatures}
           setSelected={setSelectedFeatures}
