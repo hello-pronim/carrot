@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-import { Grid, Step, StepButton, StepLabel, Stepper } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Step,
+  StepButton,
+  StepLabel,
+  Stepper,
+} from "@mui/material";
 import { spacing } from "@mui/system";
 
-import Button from "../../../components/common/button";
 import RadioButton from "../../../components/common/radioButton";
 import StepConnector from "../../../components/common/stepConnector";
 import StepIconRoot from "../../../components/common/stepIcon";

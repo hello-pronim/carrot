@@ -15,8 +15,6 @@ import FullCalendar from "../../../../components/common/fullCalendar";
 import RadioButton from "../../../../components/common/radioButton";
 import TextArea from "../../../../components/common/textarea";
 
-import Description from "../Description";
-
 import {
   budgets,
   completionStatus,
