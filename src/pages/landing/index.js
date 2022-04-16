@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import { spacing } from "@mui/system";
 
-import Button from "../../components/common/button";
 import Link from "../../components/common/link";
 
 const Wrapper = styled.div`
@@ -59,14 +58,9 @@ function Home() {
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    <Grid container spacing={2}>
+                    <Grid container alignItems="center" spacing={2}>
                       <Grid item xs={10}>
-                        <TextField
-                          placeholder="Enter a Job Title to Get Started"
-                          variant="outlined"
-                          size="small"
-                          fullWidth
-                        />
+                        <TextField variant="outlined" size="small" fullWidth />
                       </Grid>
                       <Grid item xs={2}>
                         <Button color="primary" variant="contained">

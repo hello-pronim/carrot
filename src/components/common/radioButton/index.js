@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Box, Grid, Typography } from "@mui/material";
-
-import Button from "../../../components/common/button";
+import { Box, Button, Grid, Typography } from "@mui/material";
 
 const RadioButton = ({
   label = "Please select",
@@ -20,12 +18,13 @@ const RadioButton = ({
       ? selected.includes(value)
       : false;
   };
-  const handlePlatformSelect = (value) => {
+  const handleSelect = (value) => {
     if (mode === "single") {
       setSelected(value);
     } else if (mode === "multiple") {
+      console.log(selected, value, selected.includes(value));
       if (isSelected(value))
-        setSelected(selected.filter((item) => item.value !== value));
+        setSelected(selected.filter((item) => item !== value));
       else setSelected([...selected, value]);
     }
   };
@@ -59,7 +58,7 @@ const RadioButton = ({
           {data.map((item) => (
             <Grid key={item.value} item xs={4}>
               <Button
-                onClick={() => handlePlatformSelect(item.value)}
+                onClick={() => handleSelect(item.value)}
                 color={isSelected(item.value) ? "primary" : "secondary"}
                 sx={{
                   fontWeight: isSelected(item.value) && "bold",

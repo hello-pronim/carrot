@@ -54,7 +54,7 @@ const typography = {
     color: "#434343",
   },
   body1: {
-    fontSize: 13,
+    fontSize: 14,
     color: "#434343",
   },
   button: {
