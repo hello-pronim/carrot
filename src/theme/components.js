@@ -225,7 +225,7 @@ const components = {
           },
         },
         "&.MuiToggleButtonGroup-grouped:not(:last-of-type)": {
-          borderRight: "2px solid #FFF",
+          borderRight: "3px solid #FFF",
         },
       },
     },
