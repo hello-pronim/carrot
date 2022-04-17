@@ -15,6 +15,7 @@ import FullCalendar from "../../../../components/common/fullCalendar";
 import RadioButton from "../../../../components/common/radioButton";
 import TextArea from "../../../../components/common/textarea";
 
+import { convertDateToYYYYMMDD } from "../../../../utils/functions";
 import { budgets, completionStatus, features, platforms } from "../mock";
 
 const Website = () => {
@@ -28,6 +29,9 @@ const Website = () => {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
   const [selectedPlatform, setSelectedPlatform] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
+  const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
+    start: convertDateToYYYYMMDD(new Date()),
+  });
 
   const handleDeliveryDateSelect = (date) => {
     setDeliveryDate({ ...deliveryDate, start: date.dateStr });
@@ -123,7 +127,7 @@ const Website = () => {
             <RadioButton
               label="Features Needed"
               description="(Select all that apply)"
-              data={features}
+              data={features["website"]}
               selected={selectedFeatures}
               setSelected={setSelectedFeatures}
               variant="text"
@@ -161,9 +165,7 @@ const Website = () => {
                 <FullCalendar
                   initialView="dayGridMonth"
                   events={[deliveryDate]}
-                  validRange={{
-                    start: "2022-04-09",
-                  }}
+                  validRange={validDeliveryDateRange}
                   editable={true}
                   selectable={true}
                   headerToolbar={{

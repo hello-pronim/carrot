@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   Grid,
+  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
@@ -14,16 +15,9 @@ import FullCalendar from "../../../../components/common/fullCalendar";
 import RadioButton from "../../../../components/common/radioButton";
 import TextArea from "../../../../components/common/textarea";
 
-import { convertDateToYYYYMMDD } from "../../../../utils/functions";
-import {
-  budgets,
-  completionStatus,
-  platforms,
-  quantities,
-  useLicensing,
-} from "../mock";
+import { budgets, completionStatus, features, platforms } from "../mock";
 
-const LogoDesign = () => {
+const Website = () => {
   const [deliveryDate, setDeliveryDate] = useState({
     title: "Delivery Date",
     start: "2022-04-15",
@@ -31,13 +25,9 @@ const LogoDesign = () => {
   const [description, setDescription] = useState("");
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
   const [selectedPlatform, setSelectedPlatform] = useState("");
-  const [selectedQuantity, setSelectedQuantity] = useState("");
-  const [selectedUseLicensing, setSelectedUseLicensing] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
-  const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
-    start: convertDateToYYYYMMDD(new Date()),
-  });
 
   const handleDeliveryDateSelect = (date) => {
     setDeliveryDate({ ...deliveryDate, start: date.dateStr });
@@ -85,23 +75,6 @@ const LogoDesign = () => {
         />
       </Grid>
       <Grid item xs={12}>
-        <RadioButton
-          label="Use & Licensing"
-          data={useLicensing}
-          selected={selectedUseLicensing}
-          setSelected={setSelectedUseLicensing}
-          variant="text"
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <RadioButton
-          label="Quantity"
-          data={quantities}
-          selected={selectedQuantity}
-          setSelected={setSelectedQuantity}
-        />
-      </Grid>
-      <Grid item xs={12}>
         <TextArea
           label="Description"
           value={description}
@@ -145,6 +118,35 @@ const LogoDesign = () => {
         />
       </Grid>
       <Grid item xs={12}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <RadioButton
+              label="Features Needed"
+              description="(Select all that apply)"
+              data={features}
+              selected={selectedFeatures}
+              setSelected={setSelectedFeatures}
+              variant="text"
+              mode="multiple"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Grid container alignItems="center" spacing={4}>
+                <Grid item>
+                  <Typography color="secondary" sx={{ fontWeight: 500 }}>
+                    Other:
+                  </Typography>
+                </Grid>
+                <Grid item xs>
+                  <TextField variant="outlined" size="small" fullWidth />
+                </Grid>
+              </Grid>
+            </Box>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
         <Grid container spacing={4}>
           <Grid item xs={12}>
             <Box pl={4}>
@@ -159,7 +161,9 @@ const LogoDesign = () => {
                 <FullCalendar
                   initialView="dayGridMonth"
                   events={[deliveryDate]}
-                  validRange={validDeliveryDateRange}
+                  validRange={{
+                    start: "2022-04-09",
+                  }}
                   editable={true}
                   selectable={true}
                   headerToolbar={{
@@ -189,4 +193,4 @@ const LogoDesign = () => {
   );
 };
 
-export default LogoDesign;
+export default Website;
