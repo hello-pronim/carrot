@@ -45,16 +45,35 @@ export default css`
       color: rgba(0, 0, 0, 0.26);
     }
   }
-
+  .fc .fc-daygrid-day-frame {
+    height: 80px;
+  }
+  fc-daygrid-day-events {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
   .fc-event {
     padding: ${(props) => props.theme.spacing(1)};
     margin: ${(props) => props.theme.spacing(0.5)};
+    & .fc-event-main {
+      & .event-image-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & .event-image {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
   }
 
   .fc-h-event {
-    border: 1px solid
-      ${(props) => darken(0.05, props.theme.palette.secondary.main)};
-    background: ${(props) => props.theme.palette.secondary.main};
+    border-color: ${(props) => props.theme.palette.primary.main};
+    background-color: ${(props) => props.theme.palette.primary.main};
   }
 
   .fc-unthemed td.fc-today {

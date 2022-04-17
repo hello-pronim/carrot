@@ -18,7 +18,7 @@ import TextArea from "../../../../components/common/textarea";
 import {
   budgets,
   completionStatus,
-  events,
+  deliveryDate,
   features,
   platforms,
 } from "../mock";
@@ -30,13 +30,28 @@ const Website = () => {
   const [description, setDescription] = useState("");
   const [selectedPlatform, setSelectedPlatform] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
+  const [deliveryDate, setDeliveryDate] = useState({
+    title: "Delivery Date",
+    start: "2022-04-15",
+  });
 
-  const handleCalendarSelect = () => {
-    console.log("click");
+  const handleDeliveryDateSelect = (date) => {
+    setDeliveryDate({ ...deliveryDate, start: date.dateStr });
+  };
+
+  const renderCalendarDate = () => {
+    return (
+      <div className="event-image-container">
+        <img
+          alt="event-thumb"
+          className="event-image"
+          src="static/img/carrot_thumb_white.png"
+        />
+      </div>
+    );
   };
 
   const handleDescriptionChange = (e) => {
-    console.log(e.target.value);
     setDescription(e.target.value);
   };
 
@@ -151,8 +166,10 @@ const Website = () => {
               <CardContent>
                 <FullCalendar
                   initialView="dayGridMonth"
-                  initialDate="2022-04-15"
-                  events={events}
+                  events={[deliveryDate]}
+                  validRange={{
+                    start: "2022-04-09",
+                  }}
                   editable={true}
                   selectable={true}
                   headerToolbar={{
@@ -160,7 +177,8 @@ const Website = () => {
                     center: "",
                     right: "prev,title,next",
                   }}
-                  dateClick={handleCalendarSelect}
+                  dateClick={handleDeliveryDateSelect}
+                  eventContent={renderCalendarDate}
                 />
               </CardContent>
             </Card>
