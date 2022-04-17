@@ -15,25 +15,19 @@ import FullCalendar from "../../../../components/common/fullCalendar";
 import RadioButton from "../../../../components/common/radioButton";
 import TextArea from "../../../../components/common/textarea";
 
-import {
-  budgets,
-  completionStatus,
-  deliveryDate,
-  features,
-  platforms,
-} from "../mock";
+import { budgets, completionStatus, features, platforms } from "../mock";
 
 const Website = () => {
-  const [selectedBudget, setSelectedBudget] = useState("");
-  const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
-  const [selectedFeatures, setSelectedFeatures] = useState([]);
-  const [description, setDescription] = useState("");
-  const [selectedPlatform, setSelectedPlatform] = useState("");
-  const [specialRequests, setSpecialRequests] = useState("");
   const [deliveryDate, setDeliveryDate] = useState({
     title: "Delivery Date",
     start: "2022-04-15",
   });
+  const [description, setDescription] = useState("");
+  const [selectedBudget, setSelectedBudget] = useState("");
+  const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
+  const [selectedFeatures, setSelectedFeatures] = useState([]);
+  const [selectedPlatform, setSelectedPlatform] = useState("");
+  const [specialRequests, setSpecialRequests] = useState("");
 
   const handleDeliveryDateSelect = (date) => {
     setDeliveryDate({ ...deliveryDate, start: date.dateStr });

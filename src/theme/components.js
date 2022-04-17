@@ -6,10 +6,14 @@ const components = {
     styleOverrides: {
       root: {
         "&.MuiButton-contained": {
+          fontSize: "18px",
+          lineHeight: "21px",
           borderRadius: "7px",
           boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",
         },
         "&.MuiButton-outlined": {
+          fontSize: "18px",
+          lineHeight: "21px",
           borderRadius: "7px",
           border: "2px solid #D7D7F2",
           color: "#D7D7F2",

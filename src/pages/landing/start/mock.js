@@ -1,3 +1,35 @@
+const appCategories = [
+  {
+    id: 0,
+    value: "educational",
+    title: "Educational",
+  },
+  {
+    id: 1,
+    value: "lifestyle",
+    title: "Lifestyle",
+  },
+  {
+    id: 2,
+    value: "social_media",
+    title: "Social Media",
+  },
+  {
+    id: 3,
+    value: "productivity  ",
+    title: "Productivity",
+  },
+  {
+    id: 4,
+    value: "entertainment",
+    title: "Entertainment",
+  },
+  {
+    id: 5,
+    value: "gaming",
+    title: "Gaming",
+  },
+];
 const budgets = [
   {
     id: 0,
@@ -109,7 +141,7 @@ const platforms = [
   },
 ];
 
-const projectTypeData = [
+const projectTypes = [
   {
     id: 0,
     value: "website",
@@ -117,17 +149,17 @@ const projectTypeData = [
   },
   {
     id: 1,
-    value: "mobile_app",
+    value: "mobileApp",
     title: "Mobile App",
   },
   {
     id: 2,
-    value: "logo_design",
+    value: "logoDesign",
     title: "Logo Design",
   },
   {
     id: 3,
-    value: "web_app",
+    value: "webApp",
     title: "Web App",
   },
   {
@@ -142,4 +174,11 @@ const projectTypeData = [
   },
 ];
 
-export { budgets, completionStatus, features, platforms, projectTypeData };
+export {
+  appCategories,
+  budgets,
+  completionStatus,
+  features,
+  platforms,
+  projectTypes,
+};

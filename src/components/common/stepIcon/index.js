@@ -2,10 +2,10 @@ import styled from "styled-components/macro";
 
 const StepIconRoot = styled("div")(({ ownerState }) => ({
   backgroundImage: ownerState.active
-    ? "url(static/img/step_icon_active.png)"
+    ? "url(static/img/carrot_thumb_rounded_primary.png)"
     : ownerState.completed
-    ? "url(static/img/step_icon_inactive.png)"
-    : "url(static/img/step_icon_disabled.png)",
+    ? "url(static/img/carrot_thumb_rounded_secondary.png)"
+    : "url(static/img/carrot_thumb_rounded_disabled.png)",
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
   backgroundSize: "contain",

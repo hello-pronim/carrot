@@ -18,7 +18,7 @@ import StepIconRoot from "../../../components/common/stepIcon";
 import Website from "./website";
 import MobileApp from "./mobileApp";
 
-import { projectTypeData } from "./mock";
+import { projectTypes } from "./mock";
 
 const Button = styled(MuiButton)`
   ${spacing};
@@ -71,10 +71,9 @@ function Start() {
   };
 
   const renderProjectDetail = () => {
-    console.log(selectedProjectType);
     return selectedProjectType === "website" ? (
       <Website />
-    ) : selectedProjectType === "mobile_app" ? (
+    ) : selectedProjectType === "mobileApp" ? (
       <MobileApp />
     ) : (
       <></>
@@ -116,7 +115,7 @@ function Start() {
                 <Grid item xs={12}>
                   <RadioButton
                     label="Project Type"
-                    data={projectTypeData}
+                    data={projectTypes}
                     selected={selectedProjectType}
                     setSelected={setSelectedProjectType}
                     variant="contained"
