@@ -60,7 +60,12 @@ function Home() {
                   <Grid item xs={12}>
                     <Grid container alignItems="center" spacing={2}>
                       <Grid item xs={10}>
-                        <TextField variant="outlined" size="small" fullWidth />
+                        <TextField
+                          placeholder="Enter a Job Title to Get Started"
+                          variant="outlined"
+                          size="small"
+                          fullWidth
+                        />
                       </Grid>
                       <Grid item xs={2}>
                         <Button color="primary" variant="contained">

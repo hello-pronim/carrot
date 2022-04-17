@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/macro";
 
 import {
-  Button,
+  Button as MuiButton,
   Grid,
   Step,
   StepButton,
@@ -20,22 +20,24 @@ import MobileApp from "./mobileApp";
 
 import { projectTypeData } from "./mock";
 
+const Button = styled(MuiButton)`
+  ${spacing};
+  font-size: 18px;
+  line-height: 21px;
+`;
 const Spacer = styled.div(spacing);
-
 const StepperWrapper = styled.div`
   position: absolute;
   top: -108px;
   width: 100%;
 `;
-
 const StepperContentWrapper = styled.div`
   width: 100%;
   margin-top: 108px;
-  padding-bottom: 108px;
+  padding-bottom: 280px;
   height: calc(100vh - 172px);
   overflow-y: scroll;
 `;
-
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
@@ -124,15 +126,24 @@ function Start() {
                   {renderProjectDetail()}
                 </Grid>
                 <Grid item xs={12}>
-                  <Grid container alignItems="center" justifyContent="flex-end">
+                  <Grid
+                    container
+                    alignItems="center"
+                    justifyContent="flex-end"
+                    spacing={2}
+                  >
                     <Grid item>
-                      <Button color="primary" variant="contained">
-                        Go
+                      <Button
+                        color="secondary"
+                        variant="outlined"
+                        disabled={activeStep === 1}
+                      >
+                        Clear
                       </Button>
                     </Grid>
                     <Grid item>
                       <Button color="primary" variant="contained">
-                        Go
+                        Next
                       </Button>
                     </Grid>
                   </Grid>

@@ -23,7 +23,10 @@ import {
 
 import Logo from "../../vendor/logo.png";
 
-const Button = styled(MuiButton)(spacing);
+const Button = styled(MuiButton)`
+  ${spacing};
+  font-size: 14px;
+`;
 
 const IconButton = styled(MuiIconButton)`
   svg {
