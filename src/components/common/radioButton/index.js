@@ -54,7 +54,7 @@ const RadioButton = ({
         </Box>
       </Grid>
       <Grid item xs={12}>
-        <Grid container spacing={4}>
+        <Grid container spacing={8}>
           {data.map((item) => (
             <Grid key={item.value} item xs={4}>
               <Button
