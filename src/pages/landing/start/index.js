@@ -15,8 +15,12 @@ import RadioButton from "../../../components/common/radioButton";
 import StepConnector from "../../../components/common/stepConnector";
 import StepIconRoot from "../../../components/common/stepIcon";
 
-import Website from "./website";
+import Architecture from "./architecture";
+import Database from "./database";
+import LogoDesign from "./logoDesign";
 import MobileApp from "./mobileApp";
+import WebApp from "./webApp";
+import Website from "./website";
 
 import { projectTypes } from "./mock";
 
@@ -75,6 +79,14 @@ function Start() {
       <Website />
     ) : selectedProjectType === "mobileApp" ? (
       <MobileApp />
+    ) : selectedProjectType === "logoDesign" ? (
+      <LogoDesign />
+    ) : selectedProjectType === "webApp" ? (
+      <WebApp />
+    ) : selectedProjectType === "database" ? (
+      <Database />
+    ) : selectedProjectType === "architecture" ? (
+      <Architecture />
     ) : (
       <></>
     );

@@ -174,6 +174,17 @@ const projectTypes = [
   },
 ];
 
+const quantities = [
+  { id: 0, value: "1_logo", title: "1 Logo" },
+  { id: 1, value: "2_logos", title: "2 Logos" },
+  { id: 1, value: "3+_logos", title: "3+ Logos" },
+];
+
+const useLicensing = [
+  { id: 0, value: "business", title: "Business" },
+  { id: 1, value: "personal_use", title: "Personal Use" },
+];
+
 export {
   appCategories,
   budgets,
@@ -181,4 +192,6 @@ export {
   features,
   platforms,
   projectTypes,
+  quantities,
+  useLicensing,
 };
