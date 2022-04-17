@@ -15,13 +15,7 @@ import RadioButton from "../../../../components/common/radioButton";
 import TextArea from "../../../../components/common/textarea";
 
 import { convertDateToYYYYMMDD } from "../../../../utils/functions";
-import {
-  budgets,
-  completionStatus,
-  platforms,
-  quantities,
-  useLicensing,
-} from "../mock";
+import { budgets, completionStatus, quantities, useLicensing } from "../mock";
 
 const LogoDesign = () => {
   const [deliveryDate, setDeliveryDate] = useState({
@@ -31,7 +25,6 @@ const LogoDesign = () => {
   const [description, setDescription] = useState("");
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
-  const [selectedPlatform, setSelectedPlatform] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState("");
   const [selectedUseLicensing, setSelectedUseLicensing] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
@@ -67,18 +60,8 @@ const LogoDesign = () => {
     <Grid container spacing={8}>
       <Grid item xs={12}>
         <RadioButton
-          label="Platform Assistance"
-          data={platforms.filter(
-            (platform) => platform.projectType === "website"
-          )}
-          selected={selectedPlatform}
-          setSelected={setSelectedPlatform}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <RadioButton
           label="Completion Status"
-          data={completionStatus}
+          data={completionStatus["logoDesign"]}
           selected={selectedCompletionStatus}
           setSelected={setSelectedCompletionStatus}
           variant="text"

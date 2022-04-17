@@ -15,7 +15,8 @@ import FullCalendar from "../../../../components/common/fullCalendar";
 import RadioButton from "../../../../components/common/radioButton";
 import TextArea from "../../../../components/common/textarea";
 
-import { budgets, completionStatus, features, platforms } from "../mock";
+import { convertDateToYYYYMMDD } from "../../../../utils/functions";
+import { budgets, completionStatus, features, technologies } from "../mock";
 
 const Website = () => {
   const [deliveryDate, setDeliveryDate] = useState({
@@ -26,8 +27,11 @@ const Website = () => {
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
   const [selectedFeatures, setSelectedFeatures] = useState([]);
-  const [selectedPlatform, setSelectedPlatform] = useState("");
+  const [selectedTechnology, setSelectedTechnology] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
+  const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
+    start: convertDateToYYYYMMDD(new Date()),
+  });
 
   const handleDeliveryDateSelect = (date) => {
     setDeliveryDate({ ...deliveryDate, start: date.dateStr });
@@ -57,21 +61,19 @@ const Website = () => {
     <Grid container spacing={8}>
       <Grid item xs={12}>
         <RadioButton
-          label="Platform Assistance"
-          data={platforms.filter(
-            (platform) => platform.projectType === "website"
-          )}
-          selected={selectedPlatform}
-          setSelected={setSelectedPlatform}
+          label="Completion Status"
+          data={completionStatus["database"]}
+          selected={selectedCompletionStatus}
+          setSelected={setSelectedCompletionStatus}
+          variant="text"
         />
       </Grid>
       <Grid item xs={12}>
         <RadioButton
-          label="Completion Status"
-          data={completionStatus}
-          selected={selectedCompletionStatus}
-          setSelected={setSelectedCompletionStatus}
-          variant="text"
+          label="Technology"
+          data={technologies["database"]}
+          selected={selectedTechnology}
+          setSelected={setSelectedTechnology}
         />
       </Grid>
       <Grid item xs={12}>
@@ -110,41 +112,31 @@ const Website = () => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Database URL
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              placeholder="Please provide a valid URL for the database (if applicable)"
+              variant="outlined"
+              size="small"
+              fullWidth
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
         <RadioButton
           label="Budget"
           data={budgets}
           selected={selectedBudget}
           setSelected={setSelectedBudget}
         />
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <RadioButton
-              label="Features Needed"
-              description="(Select all that apply)"
-              data={features}
-              selected={selectedFeatures}
-              setSelected={setSelectedFeatures}
-              variant="text"
-              mode="multiple"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Box pl={4}>
-              <Grid container alignItems="center" spacing={4}>
-                <Grid item>
-                  <Typography color="secondary" sx={{ fontWeight: 500 }}>
-                    Other:
-                  </Typography>
-                </Grid>
-                <Grid item xs>
-                  <TextField variant="outlined" size="small" fullWidth />
-                </Grid>
-              </Grid>
-            </Box>
-          </Grid>
-        </Grid>
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={4}>

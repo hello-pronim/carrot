@@ -72,7 +72,7 @@ const Website = () => {
       <Grid item xs={12}>
         <RadioButton
           label="Completion Status"
-          data={completionStatus}
+          data={completionStatus["website"]}
           selected={selectedCompletionStatus}
           setSelected={setSelectedCompletionStatus}
           variant="text"

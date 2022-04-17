@@ -63,14 +63,40 @@ const budgets = [
   },
 ];
 
-const completionStatus = [
-  { id: 0, value: "just_an_idea", title: "Just an Idea" },
-  { id: 1, value: "design_idea", title: "Design + Idea" },
-  { id: 2, value: "code_design", title: "Code + Design" },
-  { id: 3, value: "some_sketches", title: "Some Sketches" },
-  { id: 4, value: "some_code", title: "Some Code" },
-  { id: 5, value: "existing_live_app", title: "Existing/Live App" },
-];
+const completionStatus = {
+  website: [
+    { id: 0, value: "just_an_idea", title: "Just an Idea" },
+    { id: 1, value: "design_idea", title: "Design + Idea" },
+    { id: 2, value: "code_design", title: "Code + Design" },
+    { id: 3, value: "some_sketches", title: "Some Sketches" },
+    { id: 4, value: "some_code", title: "Some Code" },
+    { id: 5, value: "existing_live_app", title: "Existing/Live App" },
+  ],
+  mobileApp: [
+    { id: 0, value: "just_an_idea", title: "Just an Idea" },
+    { id: 1, value: "design_idea", title: "Design + Idea" },
+    { id: 2, value: "code_design", title: "Code + Design" },
+    { id: 3, value: "some_sketches", title: "Some Sketches" },
+    { id: 4, value: "some_code", title: "Some Code" },
+    { id: 5, value: "existing_live_app", title: "Existing/Live App" },
+  ],
+  logoDesign: [
+    { id: 0, value: "just_an_idea", title: "Just an Idea" },
+    { id: 1, value: "existing_logo", title: "Existing Logo" },
+  ],
+  webApp: [
+    { id: 0, value: "just_an_idea", title: "Just an Idea" },
+    { id: 1, value: "design_idea", title: "Design + Idea" },
+    { id: 2, value: "code_design", title: "Code + Design" },
+    { id: 3, value: "some_sketches", title: "Some Sketches" },
+    { id: 4, value: "some_code", title: "Some Code" },
+    { id: 5, value: "existing_live_app", title: "Existing/Live App" },
+  ],
+  database: [
+    { id: 0, value: "just_an_idea", title: "Just an Idea" },
+    { id: 1, value: "live_database", title: "Live Database" },
+  ],
+};
 
 const features = {
   website: [
@@ -219,14 +245,24 @@ const useLicensing = [
   { id: 1, value: "personal_use", title: "Personal Use" },
 ];
 
-const technologies = [
-  { id: 0, value: "javascript", title: "JavaScript" },
-  { id: 1, value: "php", title: "PHP" },
-  { id: 2, value: ".net", title: ".NET" },
-  { id: 3, value: "typescript", title: "TypeScript" },
-  { id: 4, value: "mysql", title: "MySQL" },
-  { id: 5, value: "other/idk", title: "Other/Idk" },
-];
+const technologies = {
+  webApp: [
+    { id: 0, value: "javascript", title: "JavaScript" },
+    { id: 1, value: "php", title: "PHP" },
+    { id: 2, value: ".net", title: ".NET" },
+    { id: 3, value: "typescript", title: "TypeScript" },
+    { id: 4, value: "mysql", title: "MySQL" },
+    { id: 5, value: "other/idk", title: "Other/Idk" },
+  ],
+  database: [
+    { id: 0, value: "node.js", title: "Node.js" },
+    { id: 1, value: "mysql", title: "MySQL" },
+    { id: 2, value: "socket.io", title: "Socket.io" },
+    { id: 3, value: "mongodb", title: "MongoDB" },
+    { id: 4, value: "postre", title: "Postre" },
+    { id: 5, value: "other", title: "Other" },
+  ],
+};
 
 export {
   appCategories,

@@ -15,13 +15,7 @@ import FullCalendar from "../../../../components/common/fullCalendar";
 import RadioButton from "../../../../components/common/radioButton";
 import TextArea from "../../../../components/common/textarea";
 
-import {
-  budgets,
-  completionStatus,
-  features,
-  platforms,
-  technologies,
-} from "../mock";
+import { budgets, completionStatus, features, technologies } from "../mock";
 import { convertDateToYYYYMMDD } from "../../../../utils/functions";
 
 const WebApp = () => {
@@ -33,7 +27,6 @@ const WebApp = () => {
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
   const [selectedFeatures, setSelectedFeatures] = useState([]);
-  const [selectedPlatform, setSelectedPlatform] = useState("");
   const [selectedTechnology, setSelectedTechnology] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
   const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
@@ -68,18 +61,8 @@ const WebApp = () => {
     <Grid container spacing={8}>
       <Grid item xs={12}>
         <RadioButton
-          label="Platform Assistance"
-          data={platforms.filter(
-            (platform) => platform.projectType === "website"
-          )}
-          selected={selectedPlatform}
-          setSelected={setSelectedPlatform}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <RadioButton
           label="Completion Status"
-          data={completionStatus}
+          data={completionStatus["webApp"]}
           selected={selectedCompletionStatus}
           setSelected={setSelectedCompletionStatus}
           variant="text"
@@ -88,7 +71,7 @@ const WebApp = () => {
       <Grid item xs={12}>
         <RadioButton
           label="Technology"
-          data={technologies}
+          data={technologies["webApp"]}
           selected={selectedTechnology}
           setSelected={setSelectedTechnology}
         />
