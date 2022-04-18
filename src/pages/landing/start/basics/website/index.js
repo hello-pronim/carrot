@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   Box,
@@ -26,27 +26,21 @@ const Website = ({ jobDetails, update }) => {
   const handleBudgetChanged = (value) => {
     update({ ...jobDetails, budget: value });
   };
-
   const handleCompletionStatusChanged = (value) => {
     update({ ...jobDetails, completionStatus: value });
   };
-
   const handleDeliveryDateChanged = (date) => {
     update({ ...jobDetails, deliveryDate: date.dateStr });
   };
-
   const handleDescriptionChanged = (e) => {
-    update(e.target.value);
+    update({ ...jobDetails, description: e.target.value });
   };
-
   const handleFeaturesChanged = (value) => {
     update({ ...jobDetails, features: value });
   };
-
   const handlePlatformChanged = (value) => {
     update({ ...jobDetails, platform: value });
   };
-
   const handleSpecialRequestsChanged = (e) => {
     update({ ...jobDetails, specialRequests: e.target.value });
   };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 
 import { Button as MuiButton, Grid } from "@mui/material";
@@ -46,6 +46,10 @@ function Basics({ activeStep, setActiveStep, submit }) {
   const [isOverview, setIsOverview] = useState(false);
   const [jobDetails, setJobDetails] = useState(defaultJobDetails);
   const [selectedProjectType, setSelectedProjectType] = useState("website");
+
+  useEffect(() => {
+    console.log(jobDetails);
+  }, [jobDetails]);
 
   const handleClearClicked = () => {
     setJobDetails(defaultJobDetails);

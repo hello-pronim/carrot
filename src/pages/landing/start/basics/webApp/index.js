@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   Box,
@@ -18,23 +18,31 @@ import TextArea from "../../../../../components/common/textarea";
 import { convertDateToYYYYMMDD } from "../../../../../utils/functions";
 import { budgets, completionStatus, features, technologies } from "../mock";
 
-const WebApp = () => {
-  const [deliveryDate, setDeliveryDate] = useState({
-    title: "Delivery Date",
-    start: "2022-04-15",
-  });
-  const [description, setDescription] = useState("");
-  const [selectedBudget, setSelectedBudget] = useState("");
-  const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
-  const [selectedFeatures, setSelectedFeatures] = useState([]);
-  const [selectedTechnology, setSelectedTechnology] = useState("");
-  const [specialRequests, setSpecialRequests] = useState("");
-  const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
+const WebApp = ({ jobDetails, update }) => {
+  const validDeliveryDateRange = {
     start: convertDateToYYYYMMDD(new Date()),
-  });
+  };
 
+  const handleBudgetChanged = (value) => {
+    update({ ...jobDetails, budget: value });
+  };
+  const handleCompletionStatusChanged = (value) => {
+    update({ ...jobDetails, completionStatus: value });
+  };
   const handleDeliveryDateSelect = (date) => {
-    setDeliveryDate({ ...deliveryDate, start: date.dateStr });
+    update({ ...jobDetails, deliveryDate: date.dateStr });
+  };
+  const handleDescriptionChanged = (e) => {
+    update({ ...jobDetails, description: e.target.value });
+  };
+  const handleFeaturesChanged = (value) => {
+    update({ ...jobDetails, features: value });
+  };
+  const handleSpecialRequestsChanged = (e) => {
+    update({ ...jobDetails, specialRequests: e.target.value });
+  };
+  const handleTechnologyChanged = (value) => {
+    update({ ...jobDetails, technology: value });
   };
 
   const renderCalendarDate = () => {
@@ -49,22 +57,14 @@ const WebApp = () => {
     );
   };
 
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleSpecialRequestsChange = (e) => {
-    setSpecialRequests(e.target.value);
-  };
-
   return (
     <Grid container spacing={8}>
       <Grid item xs={12}>
         <RadioButton
           label="Completion Status"
           data={completionStatus["webApp"]}
-          selected={selectedCompletionStatus}
-          setSelected={setSelectedCompletionStatus}
+          selected={jobDetails.completionStatus}
+          setSelected={handleCompletionStatusChanged}
           variant="text"
         />
       </Grid>
@@ -72,15 +72,15 @@ const WebApp = () => {
         <RadioButton
           label="Technology"
           data={technologies["webApp"]}
-          selected={selectedTechnology}
-          setSelected={setSelectedTechnology}
+          selected={jobDetails.technology}
+          setSelected={handleTechnologyChanged}
         />
       </Grid>
       <Grid item xs={12}>
         <TextArea
           label="Description"
-          value={description}
-          onChange={handleDescriptionChange}
+          value={jobDetails.description}
+          onChange={handleDescriptionChanged}
           rows={10}
           size="small"
         />
@@ -118,8 +118,8 @@ const WebApp = () => {
               label="Features Needed"
               description="(Select all that apply)"
               data={features["webApp"]}
-              selected={selectedFeatures}
-              setSelected={setSelectedFeatures}
+              selected={jobDetails.features}
+              setSelected={handleFeaturesChanged}
               variant="text"
               mode="multiple"
             />
@@ -144,8 +144,8 @@ const WebApp = () => {
         <RadioButton
           label="Budget"
           data={budgets}
-          selected={selectedBudget}
-          setSelected={setSelectedBudget}
+          selected={jobDetails.budget}
+          setSelected={handleBudgetChanged}
         />
       </Grid>
       <Grid item xs={12}>
@@ -162,7 +162,9 @@ const WebApp = () => {
               <CardContent>
                 <FullCalendar
                   initialView="dayGridMonth"
-                  events={[deliveryDate]}
+                  events={[
+                    { title: "Delivery Date", start: jobDetails.deliveryDate },
+                  ]}
                   validRange={validDeliveryDateRange}
                   editable={true}
                   selectable={true}
@@ -183,8 +185,8 @@ const WebApp = () => {
         <TextArea
           label="Special Requests"
           placeholder="Is there anything else  we missed? Don't hold back"
-          value={specialRequests}
-          onChange={handleSpecialRequestsChange}
+          value={jobDetails.specialRequests}
+          onChange={handleSpecialRequestsChanged}
           rows={10}
           size="small"
         />

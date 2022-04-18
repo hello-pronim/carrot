@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   Box,
@@ -18,22 +18,31 @@ import TextArea from "../../../../../components/common/textarea";
 import { convertDateToYYYYMMDD } from "../../../../../utils/functions";
 import { appCategories, completionStatus, platforms } from "../mock";
 
-const MobileApp = () => {
-  const [deliveryDate, setDeliveryDate] = useState({
-    title: "Delivery Date",
-    start: "2022-04-15",
-  });
-  const [description, setDescription] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
-  const [selectedPlatform, setSelectedPlatform] = useState("");
-  const [specialRequests, setSpecialRequests] = useState("");
-  const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
+const MobileApp = ({ jobDetails, update }) => {
+  const validDeliveryDateRange = {
     start: convertDateToYYYYMMDD(new Date()),
-  });
+  };
 
-  const handleDeliveryDateSelect = (date) => {
-    setDeliveryDate({ ...deliveryDate, start: date.dateStr });
+  const handleAppCategoryChanged = (value) => {
+    update({ ...jobDetails, appCategory: value });
+  };
+  const handleCompletionStatusChanged = (value) => {
+    update({ ...jobDetails, completionStatus: value });
+  };
+  const handleDeliveryDateChanged = (date) => {
+    update({ ...jobDetails, deliveryDate: date.dateStr });
+  };
+  const handleDesignSourceChanged = (e) => {
+    update({ ...jobDetails, designSource: e.target.value });
+  };
+  const handleDescriptionChanged = (e) => {
+    update({ ...jobDetails, description: e.target.value });
+  };
+  const handlePlatformChanged = (value) => {
+    update({ ...jobDetails, platform: value });
+  };
+  const handleSpecialRequestsChanged = (e) => {
+    update({ ...jobDetails, specialRequests: e.target.value });
   };
 
   const renderCalendarDate = () => {
@@ -48,22 +57,14 @@ const MobileApp = () => {
     );
   };
 
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleSpecialRequestsChange = (e) => {
-    setSpecialRequests(e.target.value);
-  };
-
   return (
     <Grid container spacing={4}>
       <Grid item xs={12}>
         <RadioButton
           label="Completion Status"
           data={completionStatus["mobileApp"]}
-          selected={selectedCompletionStatus}
-          setSelected={setSelectedCompletionStatus}
+          selected={jobDetails.completionStatus}
+          setSelected={handleCompletionStatusChanged}
           variant="text"
         />
       </Grid>
@@ -73,15 +74,15 @@ const MobileApp = () => {
           data={platforms.filter(
             (platform) => platform.projectType === "mobile_app"
           )}
-          selected={selectedPlatform}
-          setSelected={setSelectedPlatform}
+          selected={jobDetails.platform}
+          setSelected={handlePlatformChanged}
         />
       </Grid>
       <Grid item xs={12}>
         <TextArea
           label="Description"
-          value={description}
-          onChange={handleDescriptionChange}
+          value={jobDetails.description}
+          onChange={handleDescriptionChanged}
           rows={10}
           size="small"
         />
@@ -123,6 +124,8 @@ const MobileApp = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              value={jobDetails.designSource}
+              onChange={handleDesignSourceChanged}
               placeholder="Please provide a share link for the design (if applicable)"
               variant="outlined"
               size="small"
@@ -135,8 +138,8 @@ const MobileApp = () => {
         <RadioButton
           label="App Category"
           data={appCategories}
-          selected={selectedCategory}
-          setSelected={setSelectedCategory}
+          selected={jobDetails.appCategory}
+          setSelected={handleAppCategoryChanged}
         />
       </Grid>
       <Grid item xs={12}>
@@ -153,7 +156,9 @@ const MobileApp = () => {
               <CardContent>
                 <FullCalendar
                   initialView="dayGridMonth"
-                  events={[deliveryDate]}
+                  events={[
+                    { title: "Delivery Date", start: jobDetails.deliveryDate },
+                  ]}
                   validRange={validDeliveryDateRange}
                   editable={true}
                   selectable={true}
@@ -162,7 +167,7 @@ const MobileApp = () => {
                     center: "",
                     right: "prev,title,next",
                   }}
-                  dateClick={handleDeliveryDateSelect}
+                  dateClick={handleDeliveryDateChanged}
                   eventContent={renderCalendarDate}
                 />
               </CardContent>
@@ -174,8 +179,8 @@ const MobileApp = () => {
         <TextArea
           label="Special Requests"
           placeholder="Is there anything else  we missed? Don't hold back"
-          value={specialRequests}
-          onChange={handleSpecialRequestsChange}
+          value={jobDetails.specialRequests}
+          onChange={handleSpecialRequestsChanged}
           rows={10}
           size="small"
         />

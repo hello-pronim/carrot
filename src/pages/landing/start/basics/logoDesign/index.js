@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   Box,
@@ -17,23 +17,31 @@ import TextArea from "../../../../../components/common/textarea";
 import { convertDateToYYYYMMDD } from "../../../../../utils/functions";
 import { budgets, completionStatus, quantities, useLicensing } from "../mock";
 
-const LogoDesign = () => {
-  const [deliveryDate, setDeliveryDate] = useState({
-    title: "Delivery Date",
-    start: "2022-04-15",
-  });
-  const [description, setDescription] = useState("");
-  const [selectedBudget, setSelectedBudget] = useState("");
-  const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
-  const [selectedQuantity, setSelectedQuantity] = useState("");
-  const [selectedUseLicensing, setSelectedUseLicensing] = useState("");
-  const [specialRequests, setSpecialRequests] = useState("");
-  const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
+const LogoDesign = ({ jobDetails, update }) => {
+  const validDeliveryDateRange = {
     start: convertDateToYYYYMMDD(new Date()),
-  });
+  };
 
-  const handleDeliveryDateSelect = (date) => {
-    setDeliveryDate({ ...deliveryDate, start: date.dateStr });
+  const handleBudgetChanged = (value) => {
+    update({ ...jobDetails, budget: value });
+  };
+  const handleCompletionStatusChanged = (value) => {
+    update({ ...jobDetails, completionStatus: value });
+  };
+  const handleDeliveryDateChanged = (date) => {
+    update({ ...jobDetails, deliveryDate: date.dateStr });
+  };
+  const handleDescriptionChanged = (e) => {
+    update({ ...jobDetails, description: e.target.value });
+  };
+  const handleQuantityChanged = (value) => {
+    update({ ...jobDetails, quantity: value });
+  };
+  const handleSpecialRequestsChanged = (e) => {
+    update({ ...jobDetails, specialRequests: e.target.value });
+  };
+  const handleUseLicensingChanged = (value) => {
+    update({ ...jobDetails, useLicensing: value });
   };
 
   const renderCalendarDate = () => {
@@ -48,22 +56,14 @@ const LogoDesign = () => {
     );
   };
 
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleSpecialRequestsChange = (e) => {
-    setSpecialRequests(e.target.value);
-  };
-
   return (
     <Grid container spacing={8}>
       <Grid item xs={12}>
         <RadioButton
           label="Completion Status"
           data={completionStatus["logoDesign"]}
-          selected={selectedCompletionStatus}
-          setSelected={setSelectedCompletionStatus}
+          selected={jobDetails.completionStatus}
+          setSelected={handleCompletionStatusChanged}
           variant="text"
         />
       </Grid>
@@ -71,8 +71,8 @@ const LogoDesign = () => {
         <RadioButton
           label="Use & Licensing"
           data={useLicensing}
-          selected={selectedUseLicensing}
-          setSelected={setSelectedUseLicensing}
+          selected={jobDetails.useLicensing}
+          setSelected={handleUseLicensingChanged}
           variant="text"
         />
       </Grid>
@@ -80,15 +80,15 @@ const LogoDesign = () => {
         <RadioButton
           label="Quantity"
           data={quantities}
-          selected={selectedQuantity}
-          setSelected={setSelectedQuantity}
+          selected={jobDetails.quantity}
+          setSelected={handleQuantityChanged}
         />
       </Grid>
       <Grid item xs={12}>
         <TextArea
           label="Description"
-          value={description}
-          onChange={handleDescriptionChange}
+          value={jobDetails.description}
+          onChange={handleDescriptionChanged}
           rows={10}
           size="small"
         />
@@ -123,8 +123,8 @@ const LogoDesign = () => {
         <RadioButton
           label="Budget"
           data={budgets}
-          selected={selectedBudget}
-          setSelected={setSelectedBudget}
+          selected={jobDetails.budget}
+          setSelected={handleBudgetChanged}
         />
       </Grid>
       <Grid item xs={12}>
@@ -141,7 +141,9 @@ const LogoDesign = () => {
               <CardContent>
                 <FullCalendar
                   initialView="dayGridMonth"
-                  events={[deliveryDate]}
+                  events={[
+                    { title: "Delivery Date", start: jobDetails.deliveryDate },
+                  ]}
                   validRange={validDeliveryDateRange}
                   editable={true}
                   selectable={true}
@@ -150,7 +152,7 @@ const LogoDesign = () => {
                     center: "",
                     right: "prev,title,next",
                   }}
-                  dateClick={handleDeliveryDateSelect}
+                  dateClick={handleDeliveryDateChanged}
                   eventContent={renderCalendarDate}
                 />
               </CardContent>
@@ -162,8 +164,8 @@ const LogoDesign = () => {
         <TextArea
           label="Special Requests"
           placeholder="Is there anything else  we missed? Don't hold back"
-          value={specialRequests}
-          onChange={handleSpecialRequestsChange}
+          value={jobDetails.specialRequests}
+          onChange={handleSpecialRequestsChanged}
           rows={10}
           size="small"
         />

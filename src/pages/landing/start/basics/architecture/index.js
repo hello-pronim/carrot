@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import {
   Box,
@@ -23,27 +23,34 @@ import {
   services,
 } from "../mock";
 
-const Website = () => {
-  const [deliveryDate, setDeliveryDate] = useState({
-    title: "Delivery Date",
-    start: "2022-04-15",
-  });
-  const [description, setDescription] = useState("");
-  const [
-    isEngineerApprovalAndSignOffRequired,
-    setIsEngineerApprovalAndSignOffRequired,
-  ] = useState(true);
-  const [selectedBudget, setSelectedBudget] = useState("");
-  const [selectedBuildingSize, setSelectedBuildingSize] = useState("");
-  const [selectedConstruction, setSelectedConstruction] = useState("");
-  const [selectedService, setSelectedService] = useState("");
-  const [specialRequests, setSpecialRequests] = useState("");
-  const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
+const Architecture = ({ jobDetails, update }) => {
+  const validDeliveryDateRange = {
     start: convertDateToYYYYMMDD(new Date()),
-  });
+  };
 
-  const handleDeliveryDateSelect = (date) => {
-    setDeliveryDate({ ...deliveryDate, start: date.dateStr });
+  const handleBuildingSizeChanged = (value) => {
+    update({ ...jobDetails, buildingSize: value });
+  };
+  const handleBudgetChanged = (value) => {
+    update({ ...jobDetails, budget: value });
+  };
+  const handleConstructionTypeChanged = (value) => {
+    update({ ...jobDetails, constructionType: value });
+  };
+  const handleDeliveryDateChanged = (date) => {
+    update({ ...jobDetails, deliveryDate: date.dateStr });
+  };
+  const handleDescriptionChanged = (e) => {
+    update({ ...jobDetails, description: e.target.value });
+  };
+  const handleEngineerApprovalRequiredChanged = (value) => {
+    update({ ...jobDetails, isEngineerApprovalRequired: value });
+  };
+  const handleServiceChanged = (value) => {
+    update({ ...jobDetails, service: value });
+  };
+  const handleSpecialRequestsChanged = (e) => {
+    update({ ...jobDetails, specialRequests: e.target.value });
   };
 
   const renderCalendarDate = () => {
@@ -58,22 +65,14 @@ const Website = () => {
     );
   };
 
-  const handleDescriptionChange = (e) => {
-    setDescription(e.target.value);
-  };
-
-  const handleSpecialRequestsChange = (e) => {
-    setSpecialRequests(e.target.value);
-  };
-
   return (
     <Grid container spacing={8}>
       <Grid item xs={12}>
         <RadioButton
           label="Type of Construction"
           data={constructionTypes}
-          selected={selectedConstruction}
-          setSelected={setSelectedConstruction}
+          selected={jobDetails.constructionType}
+          setSelected={handleConstructionTypeChanged}
           variant="text"
         />
       </Grid>
@@ -81,31 +80,31 @@ const Website = () => {
         <RadioButton
           label="Size of Building"
           data={buildingSizes}
-          selected={selectedBuildingSize}
-          setSelected={setSelectedBuildingSize}
+          selected={jobDetails.buildingSize}
+          setSelected={handleBuildingSizeChanged}
         />
       </Grid>
       <Grid item xs={12}>
         <RadioButton
           label="Services Required"
           data={services}
-          selected={selectedService}
-          setSelected={setSelectedService}
+          selected={jobDetails.service}
+          setSelected={handleServiceChanged}
         />
       </Grid>
       <Grid item xs={12}>
         <RadioButton
           label="Engineer Approval/Sign Off"
           data={engineerApprovalAndSignOff}
-          selected={isEngineerApprovalAndSignOffRequired}
-          setSelected={setIsEngineerApprovalAndSignOffRequired}
+          selected={jobDetails.isEngineerApprovalRequired}
+          setSelected={handleEngineerApprovalRequiredChanged}
         />
       </Grid>
       <Grid item xs={12}>
         <TextArea
           label="Description"
-          value={description}
-          onChange={handleDescriptionChange}
+          value={jobDetails.description}
+          onChange={handleDescriptionChanged}
           rows={10}
           size="small"
         />
@@ -140,8 +139,8 @@ const Website = () => {
         <RadioButton
           label="Budget"
           data={budgets}
-          selected={selectedBudget}
-          setSelected={setSelectedBudget}
+          selected={jobDetails.budget}
+          setSelected={handleBudgetChanged}
         />
       </Grid>
       <Grid item xs={12}>
@@ -158,7 +157,9 @@ const Website = () => {
               <CardContent>
                 <FullCalendar
                   initialView="dayGridMonth"
-                  events={[deliveryDate]}
+                  events={[
+                    { title: "Delivery Date", start: jobDetails.deliveryDate },
+                  ]}
                   validRange={validDeliveryDateRange}
                   editable={true}
                   selectable={true}
@@ -167,7 +168,7 @@ const Website = () => {
                     center: "",
                     right: "prev,title,next",
                   }}
-                  dateClick={handleDeliveryDateSelect}
+                  dateClick={handleDeliveryDateChanged}
                   eventContent={renderCalendarDate}
                 />
               </CardContent>
@@ -179,8 +180,8 @@ const Website = () => {
         <TextArea
           label="Special Requests"
           placeholder="Is there anything else  we missed? Don't hold back"
-          value={specialRequests}
-          onChange={handleSpecialRequestsChange}
+          value={jobDetails.setSpecialRequests}
+          onChange={handleSpecialRequestsChanged}
           rows={10}
           size="small"
         />
@@ -189,4 +190,4 @@ const Website = () => {
   );
 };
 
-export default Website;
+export default Architecture;
