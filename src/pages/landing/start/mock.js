@@ -63,6 +63,13 @@ const budgets = [
   },
 ];
 
+const buildingSizes = [
+  { id: 0, value: 500, title: "500 sq. ft." },
+  { id: 1, value: 1000, title: "1000 sq. ft." },
+  { id: 2, value: "2000+", title: "2000+ sq. ft." },
+  { id: 3, value: "not_sure", title: "Not sure" },
+];
+
 const completionStatus = {
   website: [
     { id: 0, value: "just_an_idea", title: "Just an Idea" },
@@ -97,6 +104,32 @@ const completionStatus = {
     { id: 1, value: "live_database", title: "Live Database" },
   ],
 };
+
+const constructionTypes = [
+  {
+    id: 0,
+    value: "commercial",
+    title: "Commercial",
+    description: "(office space, etc.)",
+  },
+  {
+    id: 1,
+    value: "residential",
+    title: "Residential",
+    description: "(house, terrace, etc.)",
+  },
+  {
+    id: 2,
+    value: "community",
+    title: "Community",
+    description: "(church, town hall)",
+  },
+];
+
+const engineerApprovalAndSignOff = [
+  { id: 0, value: true, title: "Required" },
+  { id: 1, value: false, title: "Not Required" },
+];
 
 const features = {
   website: [
@@ -245,6 +278,15 @@ const useLicensing = [
   { id: 1, value: "personal_use", title: "Personal Use" },
 ];
 
+const services = [
+  { id: 0, value: "new_building", title: "New Building" },
+  { id: 1, value: "addon", title: "Add-On" },
+  { id: 2, value: "blueprint", title: "Blueprint" },
+  { id: 3, value: "remodel", title: "Remodel" },
+  { id: 4, value: "3d_model", title: "3D Model" },
+  { id: 5, value: "other", title: "Other" },
+];
+
 const technologies = {
   webApp: [
     { id: 0, value: "javascript", title: "JavaScript" },
@@ -267,11 +309,15 @@ const technologies = {
 export {
   appCategories,
   budgets,
+  buildingSizes,
   completionStatus,
+  constructionTypes,
   features,
+  engineerApprovalAndSignOff,
   platforms,
   projectTypes,
   quantities,
   useLicensing,
+  services,
   technologies,
 };

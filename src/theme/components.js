@@ -26,9 +26,14 @@ const components = {
       },
     },
   },
-  MuiLink: {
-    defaultProps: {
-      underline: "hover",
+  MuiCard: {
+    styleOverrides: {
+      root: {
+        borderRadius: "6px",
+        boxShadow:
+          "rgba(50, 50, 93, 0.025) 0px 2px 5px -1px, rgba(0, 0, 0, 0.05) 0px 1px 3px -1px",
+        backgroundImage: "none",
+      },
     },
   },
   MuiCardHeader: {
@@ -44,13 +49,10 @@ const components = {
       },
     },
   },
-  MuiCard: {
+  MuiChip: {
     styleOverrides: {
       root: {
         borderRadius: "6px",
-        boxShadow:
-          "rgba(50, 50, 93, 0.025) 0px 2px 5px -1px, rgba(0, 0, 0, 0.05) 0px 1px 3px -1px",
-        backgroundImage: "none",
       },
     },
   },
@@ -61,11 +63,9 @@ const components = {
       },
     },
   },
-  MuiFormControl: {
-    styleOverrides: {
-      root: {
-        padding: "4px",
-      },
+  MuiLink: {
+    defaultProps: {
+      underline: "hover",
     },
   },
   MuiOutlinedInput: {
@@ -90,20 +90,6 @@ const components = {
     styleOverrides: {
       root: {
         backgroundImage: "none",
-      },
-    },
-  },
-  MuiPickersDay: {
-    styleOverrides: {
-      day: {
-        fontWeight: "300",
-      },
-    },
-  },
-  MuiPickersYear: {
-    styleOverrides: {
-      root: {
-        height: "64px",
       },
     },
   },
@@ -144,6 +130,13 @@ const components = {
       },
     },
   },
+  MuiPickersDay: {
+    styleOverrides: {
+      day: {
+        fontWeight: "300",
+      },
+    },
+  },
   MuiPickerDTHeader: {
     styleOverrides: {
       dateHeader: {
@@ -180,10 +173,10 @@ const components = {
       },
     },
   },
-  MuiChip: {
+  MuiPickersYear: {
     styleOverrides: {
       root: {
-        borderRadius: "6px",
+        height: "64px",
       },
     },
   },
@@ -201,11 +194,10 @@ const components = {
       },
     },
   },
-  MuiToggleButtonGroup: {
+  MuiTextField: {
     styleOverrides: {
       root: {
-        borderRadius: "10px",
-        boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",
+        padding: "4px",
       },
     },
   },
@@ -227,6 +219,14 @@ const components = {
         "&.MuiToggleButtonGroup-grouped:not(:last-of-type)": {
           borderRight: "3px solid #FFF",
         },
+      },
+    },
+  },
+  MuiToggleButtonGroup: {
+    styleOverrides: {
+      root: {
+        borderRadius: "10px",
+        boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",
       },
     },
   },

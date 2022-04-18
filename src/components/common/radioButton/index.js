@@ -1,6 +1,11 @@
 import React from "react";
+import styled from "styled-components/macro";
 
 import { Box, Button, Grid, Typography } from "@mui/material";
+
+const ButtonTypography = styled(Typography)`
+  color: inherit;
+`;
 
 const RadioButton = ({
   label = "Please select",
@@ -66,7 +71,25 @@ const RadioButton = ({
                 variant={variant}
                 fullWidth
               >
-                {item.title}
+                <Grid
+                  container
+                  direction="column"
+                  alignItems="center"
+                  spacing={4}
+                >
+                  <Grid item xs={12}>
+                    <ButtonTypography sx={{ fontWeight: "bold" }}>
+                      {item.title}
+                    </ButtonTypography>
+                  </Grid>
+                  {item.description && (
+                    <Grid item xs={12}>
+                      <ButtonTypography sx={{ fontStyle: "italic" }}>
+                        {item.description}
+                      </ButtonTypography>
+                    </Grid>
+                  )}
+                </Grid>
               </Button>
             </Grid>
           ))}
