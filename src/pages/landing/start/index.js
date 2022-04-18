@@ -1,34 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-import {
-  Button as MuiButton,
-  Grid,
-  Step,
-  StepButton,
-  StepLabel,
-  Stepper,
-} from "@mui/material";
+import { Grid, Step, StepButton, StepLabel, Stepper } from "@mui/material";
 import { spacing } from "@mui/system";
 
-import RadioButton from "../../../components/common/radioButton";
 import StepConnector from "../../../components/common/stepConnector";
 import StepIconRoot from "../../../components/common/stepIcon";
 
-import Architecture from "./architecture";
-import Database from "./database";
-import LogoDesign from "./logoDesign";
-import MobileApp from "./mobileApp";
-import WebApp from "./webApp";
-import Website from "./website";
+import Basics from "./basics";
 
-import { projectTypes } from "./mock";
-
-const Button = styled(MuiButton)`
-  ${spacing};
-  font-size: 18px;
-  line-height: 21px;
-`;
 const Spacer = styled.div(spacing);
 const StepperWrapper = styled.div`
   position: absolute;
@@ -48,14 +28,13 @@ const Wrapper = styled.div`
 `;
 
 const steps = [
-  { label: "Basics", step: 1 },
-  { label: "Plan", step: 2 },
-  { label: "Subscribe", step: 3 },
-  { label: "Login", step: 4 },
+  { label: "Basics", step: 0 },
+  { label: "Plan", step: 1 },
+  { label: "Subscribe", step: 2 },
+  { label: "Login", step: 3 },
 ];
 
 function StepIcon(props) {
-  console.log(props);
   const { active, completed, className } = props;
 
   return (
@@ -65,7 +44,6 @@ function StepIcon(props) {
 
 function Start() {
   const [activeStep, setActiveStep] = useState(0);
-  const [selectedProjectType, setSelectedProjectType] = useState("website");
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -73,20 +51,17 @@ function Start() {
   const handleStepClick = (stepId) => {
     setActiveStep(stepId);
   };
+  const handleBasicSubmit = () => {};
+  const isFirstStep = (step) => {
+    return step === steps[0].step;
+  };
+  const isLastStep = (step) => {
+    return step === steps[steps.length - 1].step;
+  };
 
-  const renderProjectDetail = () => {
-    return selectedProjectType === "website" ? (
-      <Website />
-    ) : selectedProjectType === "mobileApp" ? (
-      <MobileApp />
-    ) : selectedProjectType === "logoDesign" ? (
-      <LogoDesign />
-    ) : selectedProjectType === "webApp" ? (
-      <WebApp />
-    ) : selectedProjectType === "database" ? (
-      <Database />
-    ) : selectedProjectType === "architecture" ? (
-      <Architecture />
+  const renderStepContent = () => {
+    return activeStep === 0 ? (
+      <Basics activeStep={activeStep} submit={handleBasicSubmit} />
     ) : (
       <></>
     );
@@ -122,45 +97,7 @@ function Start() {
                 <Spacer mb={8} />
               </Grid>
             </StepperWrapper>
-            <StepperContentWrapper>
-              <Grid container spacing={8}>
-                <Grid item xs={12}>
-                  <RadioButton
-                    label="Project Type"
-                    data={projectTypes}
-                    selected={selectedProjectType}
-                    setSelected={setSelectedProjectType}
-                    variant="contained"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  {renderProjectDetail()}
-                </Grid>
-                <Grid item xs={12}>
-                  <Grid
-                    container
-                    alignItems="center"
-                    justifyContent="flex-end"
-                    spacing={2}
-                  >
-                    <Grid item>
-                      <Button
-                        color="secondary"
-                        variant="outlined"
-                        disabled={activeStep === 1}
-                      >
-                        Clear
-                      </Button>
-                    </Grid>
-                    <Grid item>
-                      <Button color="primary" variant="contained">
-                        Next
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </StepperContentWrapper>
+            <StepperContentWrapper>{renderStepContent()}</StepperContentWrapper>
           </Wrapper>
         </Grid>
       </Grid>

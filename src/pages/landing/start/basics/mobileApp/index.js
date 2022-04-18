@@ -11,11 +11,11 @@ import {
   Typography,
 } from "@mui/material";
 
-import FullCalendar from "../../../../components/common/fullCalendar";
-import RadioButton from "../../../../components/common/radioButton";
-import TextArea from "../../../../components/common/textarea";
+import FullCalendar from "../../../../../components/common/fullCalendar";
+import RadioButton from "../../../../../components/common/radioButton";
+import TextArea from "../../../../../components/common/textarea";
 
-import { convertDateToYYYYMMDD } from "../../../../utils/functions";
+import { convertDateToYYYYMMDD } from "../../../../../utils/functions";
 import { appCategories, completionStatus, platforms } from "../mock";
 
 const MobileApp = () => {

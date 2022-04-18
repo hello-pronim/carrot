@@ -5,19 +5,20 @@ import {
   Card,
   CardContent,
   Grid,
+  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
 
-import FullCalendar from "../../../../components/common/fullCalendar";
-import RadioButton from "../../../../components/common/radioButton";
-import TextArea from "../../../../components/common/textarea";
+import FullCalendar from "../../../../../components/common/fullCalendar";
+import RadioButton from "../../../../../components/common/radioButton";
+import TextArea from "../../../../../components/common/textarea";
 
-import { convertDateToYYYYMMDD } from "../../../../utils/functions";
-import { budgets, completionStatus, quantities, useLicensing } from "../mock";
+import { convertDateToYYYYMMDD } from "../../../../../utils/functions";
+import { budgets, completionStatus, technologies } from "../mock";
 
-const LogoDesign = () => {
+const Website = () => {
   const [deliveryDate, setDeliveryDate] = useState({
     title: "Delivery Date",
     start: "2022-04-15",
@@ -25,8 +26,7 @@ const LogoDesign = () => {
   const [description, setDescription] = useState("");
   const [selectedBudget, setSelectedBudget] = useState("");
   const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
-  const [selectedQuantity, setSelectedQuantity] = useState("");
-  const [selectedUseLicensing, setSelectedUseLicensing] = useState("");
+  const [selectedTechnology, setSelectedTechnology] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
   const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
     start: convertDateToYYYYMMDD(new Date()),
@@ -61,7 +61,7 @@ const LogoDesign = () => {
       <Grid item xs={12}>
         <RadioButton
           label="Completion Status"
-          data={completionStatus["logoDesign"]}
+          data={completionStatus["database"]}
           selected={selectedCompletionStatus}
           setSelected={setSelectedCompletionStatus}
           variant="text"
@@ -69,19 +69,10 @@ const LogoDesign = () => {
       </Grid>
       <Grid item xs={12}>
         <RadioButton
-          label="Use & Licensing"
-          data={useLicensing}
-          selected={selectedUseLicensing}
-          setSelected={setSelectedUseLicensing}
-          variant="text"
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <RadioButton
-          label="Quantity"
-          data={quantities}
-          selected={selectedQuantity}
-          setSelected={setSelectedQuantity}
+          label="Technology"
+          data={technologies["database"]}
+          selected={selectedTechnology}
+          setSelected={setSelectedTechnology}
         />
       </Grid>
       <Grid item xs={12}>
@@ -116,6 +107,25 @@ const LogoDesign = () => {
                 </Grid>
               </Grid>
             </Box>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Database URL
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              placeholder="Please provide a valid URL for the database (if applicable)"
+              variant="outlined"
+              size="small"
+              fullWidth
+            />
           </Grid>
         </Grid>
       </Grid>
@@ -172,4 +182,4 @@ const LogoDesign = () => {
   );
 };
 
-export default LogoDesign;
+export default Website;

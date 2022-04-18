@@ -5,18 +5,23 @@ import {
   Card,
   CardContent,
   Grid,
-  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
 
-import FullCalendar from "../../../../components/common/fullCalendar";
-import RadioButton from "../../../../components/common/radioButton";
-import TextArea from "../../../../components/common/textarea";
+import FullCalendar from "../../../../../components/common/fullCalendar";
+import RadioButton from "../../../../../components/common/radioButton";
+import TextArea from "../../../../../components/common/textarea";
 
-import { convertDateToYYYYMMDD } from "../../../../utils/functions";
-import { budgets, completionStatus, features, platforms } from "../mock";
+import { convertDateToYYYYMMDD } from "../../../../../utils/functions";
+import {
+  budgets,
+  buildingSizes,
+  constructionTypes,
+  engineerApprovalAndSignOff,
+  services,
+} from "../mock";
 
 const Website = () => {
   const [deliveryDate, setDeliveryDate] = useState({
@@ -24,10 +29,14 @@ const Website = () => {
     start: "2022-04-15",
   });
   const [description, setDescription] = useState("");
+  const [
+    isEngineerApprovalAndSignOffRequired,
+    setIsEngineerApprovalAndSignOffRequired,
+  ] = useState(true);
   const [selectedBudget, setSelectedBudget] = useState("");
-  const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
-  const [selectedFeatures, setSelectedFeatures] = useState([]);
-  const [selectedPlatform, setSelectedPlatform] = useState("");
+  const [selectedBuildingSize, setSelectedBuildingSize] = useState("");
+  const [selectedConstruction, setSelectedConstruction] = useState("");
+  const [selectedService, setSelectedService] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
   const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
     start: convertDateToYYYYMMDD(new Date()),
@@ -61,21 +70,35 @@ const Website = () => {
     <Grid container spacing={8}>
       <Grid item xs={12}>
         <RadioButton
-          label="Platform Assistance"
-          data={platforms.filter(
-            (platform) => platform.projectType === "website"
-          )}
-          selected={selectedPlatform}
-          setSelected={setSelectedPlatform}
+          label="Type of Construction"
+          data={constructionTypes}
+          selected={selectedConstruction}
+          setSelected={setSelectedConstruction}
+          variant="text"
         />
       </Grid>
       <Grid item xs={12}>
         <RadioButton
-          label="Completion Status"
-          data={completionStatus["website"]}
-          selected={selectedCompletionStatus}
-          setSelected={setSelectedCompletionStatus}
-          variant="text"
+          label="Size of Building"
+          data={buildingSizes}
+          selected={selectedBuildingSize}
+          setSelected={setSelectedBuildingSize}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <RadioButton
+          label="Services Required"
+          data={services}
+          selected={selectedService}
+          setSelected={setSelectedService}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <RadioButton
+          label="Engineer Approval/Sign Off"
+          data={engineerApprovalAndSignOff}
+          selected={isEngineerApprovalAndSignOffRequired}
+          setSelected={setIsEngineerApprovalAndSignOffRequired}
         />
       </Grid>
       <Grid item xs={12}>
@@ -120,35 +143,6 @@ const Website = () => {
           selected={selectedBudget}
           setSelected={setSelectedBudget}
         />
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <RadioButton
-              label="Features Needed"
-              description="(Select all that apply)"
-              data={features["website"]}
-              selected={selectedFeatures}
-              setSelected={setSelectedFeatures}
-              variant="text"
-              mode="multiple"
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Box pl={4}>
-              <Grid container alignItems="center" spacing={4}>
-                <Grid item>
-                  <Typography color="secondary" sx={{ fontWeight: 500 }}>
-                    Other:
-                  </Typography>
-                </Grid>
-                <Grid item xs>
-                  <TextField variant="outlined" size="small" fullWidth />
-                </Grid>
-              </Grid>
-            </Box>
-          </Grid>
-        </Grid>
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={4}>

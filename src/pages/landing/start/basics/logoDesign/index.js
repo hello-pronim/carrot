@@ -10,33 +10,23 @@ import {
   Typography,
 } from "@mui/material";
 
-import FullCalendar from "../../../../components/common/fullCalendar";
-import RadioButton from "../../../../components/common/radioButton";
-import TextArea from "../../../../components/common/textarea";
+import FullCalendar from "../../../../../components/common/fullCalendar";
+import RadioButton from "../../../../../components/common/radioButton";
+import TextArea from "../../../../../components/common/textarea";
 
-import { convertDateToYYYYMMDD } from "../../../../utils/functions";
-import {
-  budgets,
-  buildingSizes,
-  constructionTypes,
-  engineerApprovalAndSignOff,
-  services,
-} from "../mock";
+import { convertDateToYYYYMMDD } from "../../../../../utils/functions";
+import { budgets, completionStatus, quantities, useLicensing } from "../mock";
 
-const Website = () => {
+const LogoDesign = () => {
   const [deliveryDate, setDeliveryDate] = useState({
     title: "Delivery Date",
     start: "2022-04-15",
   });
   const [description, setDescription] = useState("");
-  const [
-    isEngineerApprovalAndSignOffRequired,
-    setIsEngineerApprovalAndSignOffRequired,
-  ] = useState(true);
   const [selectedBudget, setSelectedBudget] = useState("");
-  const [selectedBuildingSize, setSelectedBuildingSize] = useState("");
-  const [selectedConstruction, setSelectedConstruction] = useState("");
-  const [selectedService, setSelectedService] = useState("");
+  const [selectedCompletionStatus, setSelectedCompletionStatus] = useState("");
+  const [selectedQuantity, setSelectedQuantity] = useState("");
+  const [selectedUseLicensing, setSelectedUseLicensing] = useState("");
   const [specialRequests, setSpecialRequests] = useState("");
   const [validDeliveryDateRange, setValidDeliveryDateRange] = useState({
     start: convertDateToYYYYMMDD(new Date()),
@@ -70,35 +60,28 @@ const Website = () => {
     <Grid container spacing={8}>
       <Grid item xs={12}>
         <RadioButton
-          label="Type of Construction"
-          data={constructionTypes}
-          selected={selectedConstruction}
-          setSelected={setSelectedConstruction}
+          label="Completion Status"
+          data={completionStatus["logoDesign"]}
+          selected={selectedCompletionStatus}
+          setSelected={setSelectedCompletionStatus}
           variant="text"
         />
       </Grid>
       <Grid item xs={12}>
         <RadioButton
-          label="Size of Building"
-          data={buildingSizes}
-          selected={selectedBuildingSize}
-          setSelected={setSelectedBuildingSize}
+          label="Use & Licensing"
+          data={useLicensing}
+          selected={selectedUseLicensing}
+          setSelected={setSelectedUseLicensing}
+          variant="text"
         />
       </Grid>
       <Grid item xs={12}>
         <RadioButton
-          label="Services Required"
-          data={services}
-          selected={selectedService}
-          setSelected={setSelectedService}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <RadioButton
-          label="Engineer Approval/Sign Off"
-          data={engineerApprovalAndSignOff}
-          selected={isEngineerApprovalAndSignOffRequired}
-          setSelected={setIsEngineerApprovalAndSignOffRequired}
+          label="Quantity"
+          data={quantities}
+          selected={selectedQuantity}
+          setSelected={setSelectedQuantity}
         />
       </Grid>
       <Grid item xs={12}>
@@ -189,4 +172,4 @@ const Website = () => {
   );
 };
 
-export default Website;
+export default LogoDesign;
