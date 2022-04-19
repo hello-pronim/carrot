@@ -61,7 +61,6 @@ function Basics({ activeStep, setActiveStep, submit }) {
   const handleNextClicked = () => {
     setIsOverview(true);
   };
-  const handleSubmit = () => {};
 
   const renderEditableProjectDetail = () => {
     return selectedProjectType === "website" ? (
@@ -128,7 +127,7 @@ function Basics({ activeStep, setActiveStep, submit }) {
       projectType={selectedProjectType}
       jobDetails={jobDetails}
       handleEdit={handleEditClicked}
-      handleSubmit={handleSubmit}
+      handleSubmit={submit}
     />
   );
 }
