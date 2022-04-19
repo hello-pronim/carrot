@@ -6,9 +6,9 @@ import { convertDateToMMMMDDYYYY } from "../../../../../utils/functions";
 import {
   budgets,
   completionStatus,
-  features,
-  platforms,
   projectTypes,
+  quantities,
+  useLicensing,
 } from "../mock";
 
 const ErrorText = styled(Typography)`
@@ -28,8 +28,7 @@ const Text = styled(Typography)`
   font-weight: bold;
   line-height: 16px;
 `;
-
-function WebsiteOverview({ projectType, jobDetails }) {
+function LogoDesignOverview({ projectType, jobDetails }) {
   const getCompletionStatus = () => {
     return (
       completionStatus[projectType].find(
@@ -42,19 +41,19 @@ function WebsiteOverview({ projectType, jobDetails }) {
       budgets.find((item) => item.value === jobDetails.budget)?.title || ""
     );
   };
-  const getFeatures = () => {
-    return features[projectType]
-      .filter((item) => jobDetails.features.includes(item.value))
-      .map((item) => item.title)
-      .join(", ");
-  };
-  const getPlatform = () => {
-    return (
-      platforms.find((item) => item.value === jobDetails.platform)?.title || ""
-    );
-  };
   const getProjectType = () => {
     return projectTypes.find((item) => item.value === projectType)?.title || "";
+  };
+  const getQuantity = () => {
+    return (
+      quantities.find((item) => item.value === jobDetails.quantity)?.title || ""
+    );
+  };
+  const getUseLicensing = () => {
+    return (
+      useLicensing.find((item) => item.value === jobDetails.useLicensing)
+        ?.title || ""
+    );
   };
 
   return (
@@ -71,20 +70,6 @@ function WebsiteOverview({ projectType, jobDetails }) {
           </Grid>
         </Grid>
       </Grid>
-      {getPlatform() !== "" && (
-        <Grid item xs={12}>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Label>Platform Assistance:</Label>
-            </Grid>
-            <Grid item xs={12}>
-              <Box pl={4}>
-                <Text>{getPlatform()}</Text>
-              </Box>
-            </Grid>
-          </Grid>
-        </Grid>
-      )}
       {getCompletionStatus() !== "" && (
         <Grid item xs={12}>
           <Grid container spacing={4}>
@@ -94,6 +79,34 @@ function WebsiteOverview({ projectType, jobDetails }) {
             <Grid item xs={12}>
               <Box pl={4}>
                 <Text>{getCompletionStatus()}</Text>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      )}
+      {getUseLicensing() !== "" && (
+        <Grid item xs={12}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Label>Use & useLicensing:</Label>
+            </Grid>
+            <Grid item xs={12}>
+              <Box pl={4}>
+                <Text>{getUseLicensing()}</Text>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      )}
+      {getQuantity() !== "" && (
+        <Grid item xs={12}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Label>Quantity:</Label>
+            </Grid>
+            <Grid item xs={12}>
+              <Box pl={4}>
+                <Text>{getQuantity()}</Text>
               </Box>
             </Grid>
           </Grid>
@@ -122,20 +135,6 @@ function WebsiteOverview({ projectType, jobDetails }) {
             <Grid item xs={12}>
               <Box pl={4}>
                 <Text>{getBudget()}</Text>
-              </Box>
-            </Grid>
-          </Grid>
-        </Grid>
-      )}
-      {getFeatures() !== "" && (
-        <Grid item xs={12}>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Label>Functions & Features:</Label>
-            </Grid>
-            <Grid item xs={12}>
-              <Box pl={4}>
-                <Text>{getFeatures()}</Text>
               </Box>
             </Grid>
           </Grid>
@@ -175,4 +174,4 @@ function WebsiteOverview({ projectType, jobDetails }) {
   );
 }
 
-export default WebsiteOverview;
+export default LogoDesignOverview;

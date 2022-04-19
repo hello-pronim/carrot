@@ -132,7 +132,7 @@ function MobileAppOverview({ projectType, jobDetails }) {
         <Grid item xs={12}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Label>Budget:</Label>
+              <Label>App Category:</Label>
             </Grid>
             <Grid item xs={12}>
               <Box pl={4}>
