@@ -3,12 +3,7 @@ import styled from "styled-components/macro";
 import { Box, Grid, Link as MuiLink, Typography } from "@mui/material";
 
 import { convertDateToMMMMDDYYYY } from "../../../../../utils/functions";
-import {
-  appCategories,
-  completionStatus,
-  platforms,
-  projectTypes,
-} from "../mock";
+import { budgets, completionStatus, projectTypes, technologies } from "../mock";
 
 const ErrorText = styled(Typography)`
   color: ${(props) => props.theme.palette.primary.main};
@@ -30,11 +25,10 @@ const Text = styled(Typography)`
   font-weight: bold;
   line-height: 16px;
 `;
-function MobileAppOverview({ projectType, jobDetails }) {
-  const getAppCategory = () => {
+function DatabaseOverview({ projectType, jobDetails }) {
+  const getBudget = () => {
     return (
-      appCategories.find((item) => item.value === jobDetails.appCategory)
-        ?.title || ""
+      budgets.find((item) => item.value === jobDetails.budget)?.title || ""
     );
   };
   const getCompletionStatus = () => {
@@ -44,13 +38,14 @@ function MobileAppOverview({ projectType, jobDetails }) {
       )?.title || ""
     );
   };
-  const getPlatform = () => {
-    return (
-      platforms.find((item) => item.value === jobDetails.platform)?.title || ""
-    );
-  };
   const getProjectType = () => {
     return projectTypes.find((item) => item.value === projectType)?.title || "";
+  };
+  const getTechnology = () => {
+    return (
+      technologies.find((item) => item.value === jobDetails.technology)
+        ?.title || ""
+    );
   };
 
   return (
@@ -81,6 +76,20 @@ function MobileAppOverview({ projectType, jobDetails }) {
           </Grid>
         </Grid>
       )}
+      {getTechnology() !== "" && (
+        <Grid item xs={12}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Label>Technology:</Label>
+            </Grid>
+            <Grid item xs={12}>
+              <Box pl={4}>
+                <Text>{getTechnology()}</Text>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      )}
       {jobDetails.description !== "" && (
         <Grid item xs={12}>
           <Grid container spacing={4}>
@@ -95,48 +104,34 @@ function MobileAppOverview({ projectType, jobDetails }) {
           </Grid>
         </Grid>
       )}
-      {getPlatform() !== "" && (
+      {jobDetails.databaseURL !== "" && (
         <Grid item xs={12}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Label>Platform:</Label>
-            </Grid>
-            <Grid item xs={12}>
-              <Box pl={4}>
-                <Text>{getPlatform()}</Text>
-              </Box>
-            </Grid>
-          </Grid>
-        </Grid>
-      )}
-      {jobDetails.designSource !== "" && (
-        <Grid item xs={12}>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Label>Design Source:</Label>
+              <Label>Database URL:</Label>
             </Grid>
             <Grid item xs={12}>
               <Box pl={4}>
                 <Link
                   component="button"
-                  onClick={() => window.open(jobDetails.designSource)}
+                  onClick={() => window.open(jobDetails.databaseURL)}
                 >
-                  {jobDetails.designSource}
+                  {jobDetails.databaseURL}
                 </Link>
               </Box>
             </Grid>
           </Grid>
         </Grid>
       )}
-      {getAppCategory() !== "" && (
+      {getBudget() !== "" && (
         <Grid item xs={12}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Label>App Category:</Label>
+              <Label>Budget:</Label>
             </Grid>
             <Grid item xs={12}>
               <Box pl={4}>
-                <Text>{getAppCategory()}</Text>
+                <Text>{getBudget()}</Text>
               </Box>
             </Grid>
           </Grid>
@@ -176,4 +171,4 @@ function MobileAppOverview({ projectType, jobDetails }) {
   );
 }
 
-export default MobileAppOverview;
+export default DatabaseOverview;

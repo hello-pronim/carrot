@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Box, Grid, Link as MuiLink, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 import { convertDateToMMMMDDYYYY } from "../../../../../utils/functions";
 import {
-  appCategories,
-  completionStatus,
-  platforms,
+  budgets,
+  buildingSizes,
+  constructionTypes,
+  engineerApprovalAndSignOff,
   projectTypes,
+  services,
 } from "../mock";
 
 const ErrorText = styled(Typography)`
@@ -21,36 +23,45 @@ const Label = styled(Typography)`
   font-weight: bold;
   line-height: 20px;
 `;
-const Link = styled(MuiLink)`
-  color: #1673ff;
-`;
 const Text = styled(Typography)`
   color: #989898;
   font-size: 14px;
   font-weight: bold;
   line-height: 16px;
 `;
-function MobileAppOverview({ projectType, jobDetails }) {
-  const getAppCategory = () => {
+function ArchitectureOverview({ projectType, jobDetails }) {
+  const getBudget = () => {
     return (
-      appCategories.find((item) => item.value === jobDetails.appCategory)
+      budgets.find((item) => item.value === jobDetails.budget)?.title || ""
+    );
+  };
+  const getBuildingSize = () => {
+    return (
+      buildingSizes.find((item) => item.value === jobDetails.buildingSize)
         ?.title || ""
     );
   };
-  const getCompletionStatus = () => {
-    return (
-      completionStatus[projectType].find(
-        (item) => item.value === jobDetails.completionStatus
-      )?.title || ""
+  const getConstructionType = () => {
+    const constructionType = constructionTypes.find(
+      (item) => item.value === jobDetails.constructionType
     );
+
+    return constructionType?.title + constructionType.description || "";
   };
-  const getPlatform = () => {
+  const getIsEngineerApprovalRequired = () => {
     return (
-      platforms.find((item) => item.value === jobDetails.platform)?.title || ""
+      engineerApprovalAndSignOff.find(
+        (item) => item.value === jobDetails.isEngineerApprovalRequired
+      )?.title || ""
     );
   };
   const getProjectType = () => {
     return projectTypes.find((item) => item.value === projectType)?.title || "";
+  };
+  const getService = () => {
+    return (
+      services.find((item) => item.value === jobDetails.service)?.title || ""
+    );
   };
 
   return (
@@ -67,15 +78,57 @@ function MobileAppOverview({ projectType, jobDetails }) {
           </Grid>
         </Grid>
       </Grid>
-      {getCompletionStatus() !== "" && (
+      {getConstructionType() !== "" && (
         <Grid item xs={12}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Label>Completion Status:</Label>
+              <Label>Type of Construction:</Label>
             </Grid>
             <Grid item xs={12}>
               <Box pl={4}>
-                <Text>{getCompletionStatus()}</Text>
+                <Text>{getConstructionType()}</Text>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      )}
+      {getBuildingSize() !== "" && (
+        <Grid item xs={12}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Label>Size of Building:</Label>
+            </Grid>
+            <Grid item xs={12}>
+              <Box pl={4}>
+                <Text>{getBuildingSize()}</Text>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      )}
+      {getService() !== "" && (
+        <Grid item xs={12}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Label>Services Required:</Label>
+            </Grid>
+            <Grid item xs={12}>
+              <Box pl={4}>
+                <Text>{getService()}</Text>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      )}
+      {getIsEngineerApprovalRequired() !== "" && (
+        <Grid item xs={12}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Label>Engineer Approval/Sign Off:</Label>
+            </Grid>
+            <Grid item xs={12}>
+              <Box pl={4}>
+                <Text>{getIsEngineerApprovalRequired()}</Text>
               </Box>
             </Grid>
           </Grid>
@@ -95,48 +148,15 @@ function MobileAppOverview({ projectType, jobDetails }) {
           </Grid>
         </Grid>
       )}
-      {getPlatform() !== "" && (
+      {getBudget() !== "" && (
         <Grid item xs={12}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Label>Platform:</Label>
+              <Label>Budget:</Label>
             </Grid>
             <Grid item xs={12}>
               <Box pl={4}>
-                <Text>{getPlatform()}</Text>
-              </Box>
-            </Grid>
-          </Grid>
-        </Grid>
-      )}
-      {jobDetails.designSource !== "" && (
-        <Grid item xs={12}>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Label>Design Source:</Label>
-            </Grid>
-            <Grid item xs={12}>
-              <Box pl={4}>
-                <Link
-                  component="button"
-                  onClick={() => window.open(jobDetails.designSource)}
-                >
-                  {jobDetails.designSource}
-                </Link>
-              </Box>
-            </Grid>
-          </Grid>
-        </Grid>
-      )}
-      {getAppCategory() !== "" && (
-        <Grid item xs={12}>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Label>App Category:</Label>
-            </Grid>
-            <Grid item xs={12}>
-              <Box pl={4}>
-                <Text>{getAppCategory()}</Text>
+                <Text>{getBudget()}</Text>
               </Box>
             </Grid>
           </Grid>
@@ -176,4 +196,4 @@ function MobileAppOverview({ projectType, jobDetails }) {
   );
 }
 
-export default MobileAppOverview;
+export default ArchitectureOverview;

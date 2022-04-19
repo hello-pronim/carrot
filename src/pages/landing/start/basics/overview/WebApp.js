@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Box, Grid, Link as MuiLink, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
 import { convertDateToMMMMDDYYYY } from "../../../../../utils/functions";
 import {
-  appCategories,
+  budgets,
   completionStatus,
-  platforms,
+  features,
   projectTypes,
+  technologies,
 } from "../mock";
 
 const ErrorText = styled(Typography)`
@@ -21,22 +22,13 @@ const Label = styled(Typography)`
   font-weight: bold;
   line-height: 20px;
 `;
-const Link = styled(MuiLink)`
-  color: #1673ff;
-`;
 const Text = styled(Typography)`
   color: #989898;
   font-size: 14px;
   font-weight: bold;
   line-height: 16px;
 `;
-function MobileAppOverview({ projectType, jobDetails }) {
-  const getAppCategory = () => {
-    return (
-      appCategories.find((item) => item.value === jobDetails.appCategory)
-        ?.title || ""
-    );
-  };
+function WebAppOverview({ projectType, jobDetails }) {
   const getCompletionStatus = () => {
     return (
       completionStatus[projectType].find(
@@ -44,13 +36,25 @@ function MobileAppOverview({ projectType, jobDetails }) {
       )?.title || ""
     );
   };
-  const getPlatform = () => {
+  const getBudget = () => {
     return (
-      platforms.find((item) => item.value === jobDetails.platform)?.title || ""
+      budgets.find((item) => item.value === jobDetails.budget)?.title || ""
     );
+  };
+  const getFeatures = () => {
+    return features[projectType]
+      .filter((item) => jobDetails.features.includes(item.value))
+      .map((item) => item.title)
+      .join(", ");
   };
   const getProjectType = () => {
     return projectTypes.find((item) => item.value === projectType)?.title || "";
+  };
+  const getTechnology = () => {
+    return (
+      technologies.find((item) => item.value === jobDetails.technology)
+        ?.title || ""
+    );
   };
 
   return (
@@ -81,6 +85,20 @@ function MobileAppOverview({ projectType, jobDetails }) {
           </Grid>
         </Grid>
       )}
+      {getTechnology() !== "" && (
+        <Grid item xs={12}>
+          <Grid container spacing={4}>
+            <Grid item xs={12}>
+              <Label>Technology:</Label>
+            </Grid>
+            <Grid item xs={12}>
+              <Box pl={4}>
+                <Text>{getTechnology()}</Text>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+      )}
       {jobDetails.description !== "" && (
         <Grid item xs={12}>
           <Grid container spacing={4}>
@@ -95,48 +113,29 @@ function MobileAppOverview({ projectType, jobDetails }) {
           </Grid>
         </Grid>
       )}
-      {getPlatform() !== "" && (
+      {getBudget() !== "" && (
         <Grid item xs={12}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Label>Platform:</Label>
+              <Label>Budget:</Label>
             </Grid>
             <Grid item xs={12}>
               <Box pl={4}>
-                <Text>{getPlatform()}</Text>
+                <Text>{getBudget()}</Text>
               </Box>
             </Grid>
           </Grid>
         </Grid>
       )}
-      {jobDetails.designSource !== "" && (
+      {getFeatures() !== "" && (
         <Grid item xs={12}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
-              <Label>Design Source:</Label>
+              <Label>Functions & Features:</Label>
             </Grid>
             <Grid item xs={12}>
               <Box pl={4}>
-                <Link
-                  component="button"
-                  onClick={() => window.open(jobDetails.designSource)}
-                >
-                  {jobDetails.designSource}
-                </Link>
-              </Box>
-            </Grid>
-          </Grid>
-        </Grid>
-      )}
-      {getAppCategory() !== "" && (
-        <Grid item xs={12}>
-          <Grid container spacing={4}>
-            <Grid item xs={12}>
-              <Label>App Category:</Label>
-            </Grid>
-            <Grid item xs={12}>
-              <Box pl={4}>
-                <Text>{getAppCategory()}</Text>
+                <Text>{getFeatures()}</Text>
               </Box>
             </Grid>
           </Grid>
@@ -176,4 +175,4 @@ function MobileAppOverview({ projectType, jobDetails }) {
   );
 }
 
-export default MobileAppOverview;
+export default WebAppOverview;
