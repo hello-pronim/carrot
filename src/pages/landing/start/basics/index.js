@@ -10,6 +10,7 @@ import Architecture from "./architecture";
 import Database from "./database";
 import LogoDesign from "./logoDesign";
 import MobileApp from "./mobileApp";
+import Overview from "./overview";
 import WebApp from "./webApp";
 import Website from "./website";
 
@@ -48,8 +49,8 @@ function Basics({ activeStep, setActiveStep, submit }) {
   const [selectedProjectType, setSelectedProjectType] = useState("website");
 
   useEffect(() => {
-    console.log(jobDetails);
-  }, [jobDetails]);
+    setJobDetails(defaultJobDetails);
+  }, [selectedProjectType]);
 
   const handleClearClicked = () => {
     setJobDetails(defaultJobDetails);
@@ -62,7 +63,7 @@ function Basics({ activeStep, setActiveStep, submit }) {
   };
   const handleSubmit = () => {};
 
-  const renderProjectDetail = () => {
+  const renderEditableProjectDetail = () => {
     return selectedProjectType === "website" ? (
       <Website jobDetails={jobDetails} update={setJobDetails} />
     ) : selectedProjectType === "mobileApp" ? (
@@ -92,7 +93,7 @@ function Basics({ activeStep, setActiveStep, submit }) {
         />
       </Grid>
       <Grid item xs={12}>
-        {renderProjectDetail()}
+        {renderEditableProjectDetail()}
       </Grid>
       <Grid item xs={12}>
         <Grid
@@ -123,31 +124,12 @@ function Basics({ activeStep, setActiveStep, submit }) {
       </Grid>
     </Grid>
   ) : (
-    <>
-      <Grid item xs={12}>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="flex-end"
-          spacing={2}
-        >
-          <Grid item>
-            <Button
-              onClick={handleEditClicked}
-              color="secondary"
-              variant="outlined"
-            >
-              Edit
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button onClick={handleSubmit} color="primary" variant="contained">
-              Next
-            </Button>
-          </Grid>
-        </Grid>
-      </Grid>
-    </>
+    <Overview
+      projectType={selectedProjectType}
+      jobDetails={jobDetails}
+      handleEdit={handleEditClicked}
+      handleSubmit={handleSubmit}
+    />
   );
 }
 

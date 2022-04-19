@@ -27,7 +27,6 @@ const RadioButton = ({
     if (mode === "single") {
       setSelected(value);
     } else if (mode === "multiple") {
-      console.log(selected, value, selected.includes(value));
       if (isSelected(value))
         setSelected(selected.filter((item) => item !== value));
       else setSelected([...selected, value]);

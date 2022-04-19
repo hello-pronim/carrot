@@ -18,7 +18,7 @@ const StepperWrapper = styled.div`
 const StepperContentWrapper = styled.div`
   width: 100%;
   margin-top: 108px;
-  padding-bottom: 280px;
+  padding: 16px 16px 280px;
   height: calc(100vh - 172px);
   overflow-y: scroll;
 `;
