@@ -11,9 +11,6 @@ import {
 } from "@mui/material";
 import { spacing } from "@mui/system";
 
-import { convertDateToMMDDYY } from "../../../../utils/functions";
-import { gamePlans } from "./mock";
-
 const Button = styled(MuiButton)`
   ${spacing};
   font-size: 18px;
@@ -34,9 +31,6 @@ const CardHeader = styled(MuiCardHeader)`
     margin: 0;
   }
 `;
-const DotGroup = styled.div`
-  border-bottom: 2px dotted ${(props) => props.theme.palette.secondary.main};
-`;
 
 function Subscribe({ jobDetails, handleBack, handleSubmit }) {
   return (
@@ -55,53 +49,7 @@ function Subscribe({ jobDetails, handleBack, handleSubmit }) {
             action={<Typography>Delivery</Typography>}
           />
           <CardContent>
-            <Grid container spacing={8}>
-              {gamePlans[jobDetails.projectType].map((plan) => (
-                <Grid key={plan.id} item xs={12}>
-                  <Grid container spacing={4}>
-                    <Grid item xs={12}>
-                      <Box pl={4}>
-                        <Typography variant="h3" color="primary">
-                          {plan.title}
-                        </Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Grid container spacing={2}>
-                        {plan.children.map((child) => (
-                          <Grid key={child.id} item xs={12}>
-                            <Grid
-                              container
-                              alignItems="baseline"
-                              justifyContent="space-between"
-                              spacing={1}
-                            >
-                              <Grid item>
-                                <Typography variant="h6" color="secondary">
-                                  {child.title}
-                                </Typography>
-                              </Grid>
-                              <Grid item xs>
-                                <DotGroup />
-                              </Grid>
-                              <Grid item>
-                                <Typography
-                                  variant="h6"
-                                  color="secondary"
-                                  sx={{ fontWeight: "bold" }}
-                                >
-                                  {convertDateToMMDDYY(new Date(child.date))}
-                                </Typography>
-                              </Grid>
-                            </Grid>
-                          </Grid>
-                        ))}
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              ))}
-            </Grid>
+            <Grid container spacing={8}></Grid>
           </CardContent>
         </Card>
       </Grid>
