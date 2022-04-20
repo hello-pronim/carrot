@@ -16,6 +16,9 @@ const GlobalStyle = createGlobalStyle`
   body {
     background: ${(props) => props.theme.palette.background.default};
     margin: 0;
+    > iframe{
+      pointer-events: none;
+    }
   }
 
   .MuiCardHeader-action .MuiIconButton-root {
