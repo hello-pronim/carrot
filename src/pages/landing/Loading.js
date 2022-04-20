@@ -14,11 +14,13 @@ const Text = styled(Typography)`
   font-weight: bold;
   line-height: 16px;
 `;
-function Loading({ image, title, description, children }) {
+function Loading({ data, children }) {
+  const { image, title, description } = data;
+
   return (
     <Grid container spacing={4}>
       {image && (
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <Grid container justifyContent="center">
             <Grid item>
               <img src={image} alt="loading" />
@@ -26,22 +28,20 @@ function Loading({ image, title, description, children }) {
           </Grid>
         </Grid>
       )}
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <Grid container justifyContent="center">
           <Title>{title}</Title>
         </Grid>
       </Grid>
       {description && (
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <Grid container justifyContent="center">
             <Text>{description}</Text>
           </Grid>
         </Grid>
       )}
-      <Grid xs={12}>
-        <Grid container justifyContent="center">
-          {children}
-        </Grid>
+      <Grid item xs={12}>
+        {children}
       </Grid>
     </Grid>
   );

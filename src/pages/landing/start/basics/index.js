@@ -23,7 +23,7 @@ const Button = styled(MuiButton)`
   line-height: 21px;
 `;
 
-function Basics({ activeStep, setActiveStep, submit }) {
+function Basics({ handleSubmit }) {
   const defaultJobDetails = {
     appCategory: "",
     attachment: "",
@@ -60,6 +60,9 @@ function Basics({ activeStep, setActiveStep, submit }) {
   };
   const handleNextClicked = () => {
     setIsOverview(true);
+  };
+  const handleSubmitClicked = () => {
+    handleSubmit({ ...jobDetails, projectType: selectedProjectType });
   };
 
   const renderEditableProjectDetail = () => {
@@ -127,7 +130,7 @@ function Basics({ activeStep, setActiveStep, submit }) {
       projectType={selectedProjectType}
       jobDetails={jobDetails}
       handleEdit={handleEditClicked}
-      handleSubmit={submit}
+      handleSubmit={handleSubmitClicked}
     />
   );
 }

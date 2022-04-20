@@ -9,6 +9,8 @@ import StepIconRoot from "../../../components/common/stepIcon";
 
 import Basics from "./basics";
 import Loading from "../Loading";
+import Plan from "./plan";
+import Subscribe from "./subscribe";
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -61,6 +63,7 @@ function Start() {
     title: "",
     description: "",
   });
+  const [jobDetails, setJobDetails] = useState({});
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -68,7 +71,9 @@ function Start() {
   const handleStepClick = (stepId) => {
     setActiveStep(stepId);
   };
-  const handleBasicSubmit = () => {
+  const handleBasicSubmit = (details) => {
+    setJobDetails(details);
+    if (!isLastStep(activeStep + 1)) setActiveStep(activeStep + 1);
     setLoadingProps({
       image: "static/img/carrot.png",
       title: "Planting the Seed...",
@@ -76,11 +81,13 @@ function Start() {
         "We're putting a schedule together based on your project details. Sit tight.",
     });
     setLoading(true);
-    // const timer = setTimeout(() => {
-    //   setLoading(false);
-    //   if (!isLastStep(activeStep + 1)) setActiveStep(activeStep + 1);
-    // }, 10000);
-    // return () => clearTimeout(timer);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  };
+  const handlePlanSubmit = () => {
+    if (!isLastStep(activeStep + 1)) setActiveStep(activeStep + 1);
   };
   const isFirstStep = (step) => {
     return step === steps[0].step;
@@ -91,7 +98,19 @@ function Start() {
 
   const renderStepContent = () => {
     return activeStep === 0 ? (
-      <Basics activeStep={activeStep} submit={handleBasicSubmit} />
+      <Basics handleSubmit={handleBasicSubmit} />
+    ) : activeStep === 1 ? (
+      <Plan
+        jobDetails={jobDetails}
+        handleBack={handleBack}
+        handleSubmit={handlePlanSubmit}
+      ></Plan>
+    ) : activeStep === 2 ? (
+      <Subscribe
+        jobDetails={jobDetails}
+        handleBack={handleBack}
+        handleSubmit={handlePlanSubmit}
+      ></Subscribe>
     ) : (
       <></>
     );
@@ -114,7 +133,7 @@ function Start() {
                       <Step key={step.label}>
                         <StepButton
                           color="inherit"
-                          onClick={() => handleStepClick(step.id)}
+                          onClick={() => handleStepClick(step.step)}
                         >
                           <StepLabel StepIconComponent={StepIcon}>
                             {step.label}
@@ -133,11 +152,7 @@ function Start() {
               </StepperContentWrapper>
             ) : (
               <LoadingWrapper>
-                <Loading
-                  image="static/img/carrot.png"
-                  title="Planting the Seed..."
-                  description="We're putting a schedule together based on your project details. Sit tight."
-                />
+                <Loading data={loadingProps} />
               </LoadingWrapper>
             )}
           </Wrapper>

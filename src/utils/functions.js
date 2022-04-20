@@ -28,5 +28,13 @@ const convertDateToMMMMDDYYYY = (date) => {
 
   return m + " " + appendOrdinalSuffix(d) + ", " + y;
 };
+const convertDateToMMDDYY = (date) => {
+  const dateObject = new Date(date);
+  const d = String(dateObject.getDate()).padStart(2, "0");
+  const m = String(dateObject.getMonth() + 1).padStart(2, "0");
+  const y = String(dateObject.getFullYear());
 
-export { convertDateToYYYYMMDD, convertDateToMMMMDDYYYY };
+  return m + "/" + d + "/" + y;
+};
+
+export { convertDateToYYYYMMDD, convertDateToMMMMDDYYYY, convertDateToMMDDYY };

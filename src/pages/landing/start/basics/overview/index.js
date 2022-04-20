@@ -38,7 +38,7 @@ function Overview({ projectType, jobDetails, handleEdit, handleSubmit }) {
   return (
     <Grid container spacing={8}>
       <Grid item xs={12}>
-        <Card variant="outlined">
+        <Card>
           <CardContent>{renderOverview()}</CardContent>
         </Card>
       </Grid>
