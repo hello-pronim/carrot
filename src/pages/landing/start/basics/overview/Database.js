@@ -43,8 +43,9 @@ function DatabaseOverview({ projectType, jobDetails }) {
   };
   const getTechnology = () => {
     return (
-      technologies.find((item) => item.value === jobDetails.technology)
-        ?.title || ""
+      technologies[projectType].find(
+        (item) => item.value === jobDetails.technology
+      )?.title || ""
     );
   };
 
