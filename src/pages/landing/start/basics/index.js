@@ -83,55 +83,61 @@ function Basics({ handleSubmit }) {
     );
   };
 
-  return !isOverview ? (
-    <Grid container spacing={8}>
-      <Grid item xs={12}>
-        <RadioButton
-          label="Project Type"
-          data={projectTypes}
-          selected={selectedProjectType}
-          setSelected={setSelectedProjectType}
-          variant="contained"
-        />
-      </Grid>
-      <Grid item xs={12}>
-        {renderEditableProjectDetail()}
-      </Grid>
-      <Grid item xs={12}>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="flex-end"
-          spacing={2}
-        >
-          <Grid item>
-            <Button
-              onClick={handleClearClicked}
-              color="secondary"
-              variant="outlined"
-            >
-              Clear
-            </Button>
+  return (
+    <Grid container justifyContent="center">
+      <Grid item xs={8}>
+        {!isOverview ? (
+          <Grid container spacing={8}>
+            <Grid item xs={12}>
+              <RadioButton
+                label="Project Type"
+                data={projectTypes}
+                selected={selectedProjectType}
+                setSelected={setSelectedProjectType}
+                variant="contained"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              {renderEditableProjectDetail()}
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                container
+                alignItems="center"
+                justifyContent="flex-end"
+                spacing={2}
+              >
+                <Grid item>
+                  <Button
+                    onClick={handleClearClicked}
+                    color="secondary"
+                    variant="outlined"
+                  >
+                    Clear
+                  </Button>
+                </Grid>
+                <Grid item>
+                  <Button
+                    onClick={handleNextClicked}
+                    color="primary"
+                    variant="contained"
+                  >
+                    Next
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Button
-              onClick={handleNextClicked}
-              color="primary"
-              variant="contained"
-            >
-              Next
-            </Button>
-          </Grid>
-        </Grid>
+        ) : (
+          <Overview
+            projectType={selectedProjectType}
+            jobDetails={jobDetails}
+            handleEdit={handleEditClicked}
+            handleSubmit={handleSubmitClicked}
+          />
+        )}
       </Grid>
     </Grid>
-  ) : (
-    <Overview
-      projectType={selectedProjectType}
-      jobDetails={jobDetails}
-      handleEdit={handleEditClicked}
-      handleSubmit={handleSubmitClicked}
-    />
   );
 }
 

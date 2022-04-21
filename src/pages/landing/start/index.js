@@ -56,14 +56,14 @@ function StepIcon(props) {
 }
 
 function Start() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(2);
   const [loading, setLoading] = useState(false);
   const [loadingProps, setLoadingProps] = useState({
     image: "",
     title: "",
     description: "",
   });
-  const [jobDetails, setJobDetails] = useState({});
+  const [jobDetails, setJobDetails] = useState({ projectType: "website" });
 
   const handleBack = () => {
     setActiveStep(activeStep - 1);
@@ -119,11 +119,11 @@ function Start() {
   return (
     <React.Fragment>
       <Grid container justifyContent="center">
-        <Grid item xs={8}>
+        <Grid item xs={12}>
           <Wrapper>
             <StepperWrapper>
-              <Grid container>
-                <Grid item xs={12}>
+              <Grid container justifyContent="center">
+                <Grid item xs={8}>
                   <Stepper
                     alternativeLabel
                     activeStep={activeStep}

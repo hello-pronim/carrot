@@ -40,87 +40,101 @@ const DotGroup = styled.div`
 
 function Plan({ jobDetails, handleBack, handleSubmit }) {
   return (
-    <Grid container spacing={4}>
-      <Grid item xs={12}>
-        <Box pl={4}>
-          <Typography variant="h3" color="primary">
-            Here's the Game Plan
-          </Typography>
-        </Box>
-      </Grid>
-      <Grid item xs={12}>
-        <Card>
-          <CardHeader
-            title={<Typography>Task</Typography>}
-            action={<Typography>Delivery</Typography>}
-          />
-          <CardContent>
-            <Grid container spacing={8}>
-              {gamePlans[jobDetails.projectType].map((plan) => (
-                <Grid key={plan.id} item xs={12}>
-                  <Grid container spacing={4}>
-                    <Grid item xs={12}>
-                      <Box pl={4}>
-                        <Typography variant="h3" color="primary">
-                          {plan.title}
-                        </Typography>
-                      </Box>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Grid container spacing={2}>
-                        {plan.children.map((child) => (
-                          <Grid key={child.id} item xs={12}>
-                            <Grid
-                              container
-                              alignItems="baseline"
-                              justifyContent="space-between"
-                              spacing={1}
-                            >
-                              <Grid item>
-                                <Typography variant="h6" color="secondary">
-                                  {child.title}
-                                </Typography>
-                              </Grid>
-                              <Grid item xs>
-                                <DotGroup />
-                              </Grid>
-                              <Grid item>
-                                <Typography
-                                  variant="h6"
-                                  color="secondary"
-                                  sx={{ fontWeight: "bold" }}
+    <Grid container justifyContent="center">
+      <Grid item xs={8}>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Here's the Game Plan
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <Card>
+              <CardHeader
+                title={<Typography>Task</Typography>}
+                action={<Typography>Delivery</Typography>}
+              />
+              <CardContent>
+                <Grid container spacing={8}>
+                  {gamePlans[jobDetails.projectType].map((plan) => (
+                    <Grid key={plan.id} item xs={12}>
+                      <Grid container spacing={4}>
+                        <Grid item xs={12}>
+                          <Box pl={4}>
+                            <Typography variant="h3" color="primary">
+                              {plan.title}
+                            </Typography>
+                          </Box>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Grid container spacing={2}>
+                            {plan.children.map((child) => (
+                              <Grid key={child.id} item xs={12}>
+                                <Grid
+                                  container
+                                  alignItems="baseline"
+                                  justifyContent="space-between"
+                                  spacing={1}
                                 >
-                                  {convertDateToMMDDYY(new Date(child.date))}
-                                </Typography>
+                                  <Grid item>
+                                    <Typography variant="h6" color="secondary">
+                                      {child.title}
+                                    </Typography>
+                                  </Grid>
+                                  <Grid item xs>
+                                    <DotGroup />
+                                  </Grid>
+                                  <Grid item>
+                                    <Typography
+                                      variant="h6"
+                                      color="secondary"
+                                      sx={{ fontWeight: "bold" }}
+                                    >
+                                      {convertDateToMMDDYY(
+                                        new Date(child.date)
+                                      )}
+                                    </Typography>
+                                  </Grid>
+                                </Grid>
                               </Grid>
-                            </Grid>
+                            ))}
                           </Grid>
-                        ))}
+                        </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
-          </CardContent>
-        </Card>
-      </Grid>
-      <Grid item xs={12}>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="flex-end"
-          spacing={2}
-        >
-          <Grid item>
-            <Button onClick={handleBack} color="secondary" variant="outlined">
-              Back
-            </Button>
+              </CardContent>
+            </Card>
           </Grid>
-          <Grid item>
-            <Button onClick={handleSubmit} color="primary" variant="contained">
-              Accept
-            </Button>
+          <Grid item xs={12}>
+            <Grid
+              container
+              alignItems="center"
+              justifyContent="flex-end"
+              spacing={2}
+            >
+              <Grid item>
+                <Button
+                  onClick={handleBack}
+                  color="secondary"
+                  variant="outlined"
+                >
+                  Back
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  onClick={handleSubmit}
+                  color="primary"
+                  variant="contained"
+                >
+                  Accept
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
