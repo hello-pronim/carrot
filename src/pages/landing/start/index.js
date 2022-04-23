@@ -56,7 +56,7 @@ function StepIcon(props) {
 }
 
 function Start() {
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [loadingProps, setLoadingProps] = useState({
     image: "",
@@ -73,7 +73,7 @@ function Start() {
   };
   const handleBasicSubmit = (details) => {
     setJobDetails(details);
-    if (!isLastStep(activeStep + 1)) setActiveStep(activeStep + 1);
+    if (canGoNext(activeStep)) setActiveStep(activeStep + 1);
     setLoadingProps({
       image: "static/img/carrot.png",
       title: "Planting the Seed...",
@@ -87,13 +87,16 @@ function Start() {
     return () => clearTimeout(timer);
   };
   const handlePlanSubmit = () => {
-    if (!isLastStep(activeStep + 1)) setActiveStep(activeStep + 1);
+    if (canGoNext(activeStep)) setActiveStep(activeStep + 1);
   };
-  const isFirstStep = (step) => {
-    return step === steps[0].step;
+  const handleSubscriptionSubmit = () => {
+    if (canGoNext(activeStep)) setActiveStep(activeStep + 1);
   };
-  const isLastStep = (step) => {
-    return step === steps[steps.length - 1].step;
+  const canGoBack = (step) => {
+    return step - 1 >= steps[0].step;
+  };
+  const canGoNext = (step) => {
+    return step + 1 <= steps[steps.length - 1].step;
   };
 
   const renderStepContent = () => {
@@ -109,7 +112,7 @@ function Start() {
       <Subscribe
         jobDetails={jobDetails}
         handleBack={handleBack}
-        handleSubmit={handlePlanSubmit}
+        handleSubmit={handleSubscriptionSubmit}
       ></Subscribe>
     ) : (
       <></>

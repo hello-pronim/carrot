@@ -18,15 +18,35 @@ const useStyles = makeStyles({
   },
 });
 
-const CreateAccountForm = () => {
+const CreateAccountForm = ({ accountDetails, setAccountDetails, submit }) => {
   const classes = useStyles();
   const [canSubscribe, setCanSubscribe] = useState(false);
   const [isAcceptPolicies, setIsAcceptPolicies] = useState(false);
 
   const handleAcceptPoliciesChanged = (e, checked) => {
-    console.log(checked);
     setIsAcceptPolicies(checked);
     setCanSubscribe(checked);
+  };
+  const handleFirstNameChanged = (e) => {
+    setAccountDetails({ ...accountDetails, firstName: e.target.value });
+  };
+  const handleLastNameChanged = (e) => {
+    setAccountDetails({ ...accountDetails, lastName: e.target.value });
+  };
+  const handleCompanyChanged = (e) => {
+    setAccountDetails({ ...accountDetails, company: e.target.value });
+  };
+  const handleUsernameChanged = (e) => {
+    setAccountDetails({ ...accountDetails, username: e.target.value });
+  };
+  const handlePasswordChanged = (e) => {
+    setAccountDetails({ ...accountDetails, password: e.target.value });
+  };
+  const handleConfirmPasswordChanged = (e) => {
+    setAccountDetails({ ...accountDetails, confirmPassword: e.target.value });
+  };
+  const handlePhoneNumberChanged = (e) => {
+    setAccountDetails({ ...accountDetails, pone: e.target.value });
   };
 
   return (
@@ -55,6 +75,8 @@ const CreateAccountForm = () => {
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
+                          value={accountDetails.firstName}
+                          onChange={handleFirstNameChanged}
                           placeholder="Enter a First Name"
                           variant="outlined"
                           fullWidth
@@ -73,6 +95,8 @@ const CreateAccountForm = () => {
                       </Grid>
                       <Grid item xs={12}>
                         <TextField
+                          value={accountDetails.lastName}
+                          onChange={handleLastNameChanged}
                           placeholder="Enter a Last Name"
                           variant="outlined"
                           fullWidth
@@ -93,6 +117,8 @@ const CreateAccountForm = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      value={accountDetails.company}
+                      onChange={handleCompanyChanged}
                       placeholder="Enter a Company or organization name"
                       variant="outlined"
                       fullWidth
@@ -111,6 +137,8 @@ const CreateAccountForm = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      value={accountDetails.username}
+                      onChange={handleUsernameChanged}
                       placeholder="Enter a desired username"
                       variant="outlined"
                       fullWidth
@@ -129,6 +157,8 @@ const CreateAccountForm = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      value={accountDetails.password}
+                      onChange={handlePasswordChanged}
                       type="password"
                       placeholder="Must contain 1 capital letter and 3 special characters"
                       variant="outlined"
@@ -149,6 +179,8 @@ const CreateAccountForm = () => {
                   <Grid item xs={12}>
                     <TextField
                       type="password"
+                      value={accountDetails.confirmPassword}
+                      onChange={handleConfirmPasswordChanged}
                       placeholder="Enter the password again"
                       variant="outlined"
                       fullWidth
@@ -167,6 +199,8 @@ const CreateAccountForm = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                      value={accountDetails.number}
+                      onChange={handlePhoneNumberChanged}
                       placeholder="Enter a valid phone number"
                       variant="outlined"
                       fullWidth
@@ -197,6 +231,7 @@ const CreateAccountForm = () => {
                     <Button
                       variant="contained"
                       color="primary"
+                      onClick={submit}
                       disabled={!canSubscribe}
                     >
                       Subscribe

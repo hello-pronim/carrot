@@ -6,13 +6,26 @@ import SubscriptionCard from "../../../../components/common/card/SubscriptionCar
 import CreateAccountForm from "./CreateAccountForm";
 import PaymentDetailsForm from "./PaymentDetailsForm";
 
-const SubscriptionForm = ({ subscription }) => {
+const SubscriptionForm = ({ subscription, submit }) => {
   const [paymentDetails, setPaymentDetails] = useState({
     cardNumber: "",
     expirationDate: "",
     cvv: "",
     billingZipCode: "",
   });
+  const [accountDetails, setAccountDetails] = useState({
+    firstName: "",
+    lastName: "",
+    company: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    phone: "",
+  });
+
+  const handleSubmit = (accountDetails) => {
+    submit({ user: accountDetails, payment: paymentDetails });
+  };
 
   return (
     <Grid container spacing={16}>
@@ -36,7 +49,11 @@ const SubscriptionForm = ({ subscription }) => {
       <Grid item xs={12}>
         <Grid container justifyContent="center">
           <Grid item xs={8}>
-            <CreateAccountForm />
+            <CreateAccountForm
+              accountDetails={accountDetails}
+              setAccountDetails={setAccountDetails}
+              submit={handleSubmit}
+            />
           </Grid>
         </Grid>
       </Grid>

@@ -5,7 +5,7 @@ import SubscriptionForm from "./SubscriptionForm";
 
 import { subscriptions } from "./mock";
 
-function Subscribe() {
+function Subscribe({ jobDetails, handleBack, handleSubmit }) {
   const [selectedSubscription, setSelectedSubscription] = useState(null);
 
   const handleSubscriptionSelected = (subscription) => {
@@ -13,7 +13,10 @@ function Subscribe() {
   };
 
   return selectedSubscription !== null ? (
-    <SubscriptionForm subscription={selectedSubscription} />
+    <SubscriptionForm
+      subscription={selectedSubscription}
+      submit={handleSubmit}
+    />
   ) : (
     <Subscriptions
       subscriptions={subscriptions}
