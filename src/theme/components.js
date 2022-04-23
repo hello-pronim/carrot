@@ -10,6 +10,17 @@ const components = {
           lineHeight: "21px",
           borderRadius: "7px",
           boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",
+          "&.MuiButton-containedPrimary": {
+            backgroundColor: "#FD9827",
+          },
+          "&.MuiButton-containedSecondary": {
+            backgroundColor: "#9797DD",
+          },
+          "&.Mui-disabled": {
+            boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.25)",
+            color: "#FFF",
+            opacity: 0.3,
+          },
         },
         "&.MuiButton-outlined": {
           fontSize: "18px",
@@ -190,13 +201,6 @@ const components = {
             display: "none",
           },
         },
-      },
-    },
-  },
-  MuiTextField: {
-    styleOverrides: {
-      root: {
-        padding: "4px",
       },
     },
   },

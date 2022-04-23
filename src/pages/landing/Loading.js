@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 const Title = styled(Typography)`
   color: #000;
