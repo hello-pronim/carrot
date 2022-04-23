@@ -122,7 +122,7 @@ const SubscriptionCard = ({ subscription }) => {
           <Grid item>
             <Grid container direction="column" spacing={1}>
               {subscription.items.map((item) => (
-                <Grid item xs={12}>
+                <Grid key={item} item xs={12}>
                   <Typography
                     variant="body2"
                     color="secondary"

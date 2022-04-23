@@ -40,12 +40,7 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const steps = [
-  { label: "Basics", step: 0 },
-  { label: "Plan", step: 1 },
-  { label: "Subscribe", step: 2 },
-  { label: "Login", step: 3 },
-];
+const steps = ["Basics", "Plan", "Subscribe", "Login"];
 
 function StepIcon(props) {
   const { active, completed, className } = props;
@@ -57,6 +52,7 @@ function StepIcon(props) {
 
 function Start() {
   const [activeStep, setActiveStep] = useState(0);
+  const [completedSteps, setCompletedSteps] = useState({});
   const [loading, setLoading] = useState(false);
   const [loadingProps, setLoadingProps] = useState({
     image: "",
@@ -71,32 +67,45 @@ function Start() {
   const handleStepClick = (stepId) => {
     setActiveStep(stepId);
   };
+  const handleStepComplete = () => {
+    const newCompleted = completedSteps;
+
+    newCompleted[activeStep] = true;
+    setCompletedSteps(newCompleted);
+    setActiveStep(activeStep + 1);
+  };
   const handleBasicSubmit = (details) => {
     setJobDetails(details);
-    if (canGoNext(activeStep)) setActiveStep(activeStep + 1);
-    setLoadingProps({
-      image: "static/img/carrot.png",
-      title: "Planting the Seed...",
-      description:
-        "We're putting a schedule together based on your project details. Sit tight.",
-    });
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
+    if (canGoNext()) {
+      handleStepComplete();
+      setLoadingProps({
+        image: "static/img/carrot.png",
+        title: "Planting the Seed...",
+        description:
+          "We're putting a schedule together based on your project details. Sit tight.",
+      });
+      setLoading(true);
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
   };
   const handlePlanSubmit = () => {
-    if (canGoNext(activeStep)) setActiveStep(activeStep + 1);
+    if (canGoNext()) {
+      handleStepComplete();
+    }
   };
   const handleSubscriptionSubmit = () => {
-    if (canGoNext(activeStep)) setActiveStep(activeStep + 1);
+    if (canGoNext()) {
+      handleStepComplete();
+    }
   };
-  const canGoBack = (step) => {
-    return step - 1 >= steps[0].step;
+  const canGoBack = () => {
+    return activeStep - 1 >= 1;
   };
-  const canGoNext = (step) => {
-    return step + 1 <= steps[steps.length - 1].step;
+  const canGoNext = () => {
+    return activeStep + 1 <= steps.length;
   };
 
   const renderStepContent = () => {
@@ -132,14 +141,14 @@ function Start() {
                     activeStep={activeStep}
                     connector={<StepConnector />}
                   >
-                    {steps.map((step) => (
-                      <Step key={step.label}>
+                    {steps.map((step, index) => (
+                      <Step key={index} completed={completedSteps[index]}>
                         <StepButton
                           color="inherit"
-                          onClick={() => handleStepClick(step.step)}
+                          onClick={() => handleStepClick(index)}
                         >
                           <StepLabel StepIconComponent={StepIcon}>
-                            {step.label}
+                            {step}
                           </StepLabel>
                         </StepButton>
                       </Step>
