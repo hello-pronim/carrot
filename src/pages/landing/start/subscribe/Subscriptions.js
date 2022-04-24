@@ -56,7 +56,7 @@ const Subscriptions = ({ subscriptions, selectSubscription }) => {
       </Grid>
       <Grid item xs={12}>
         <Grid container justifyContent="center" spacing={2}>
-          <Grid item xs="10">
+          <Grid item xs={10}>
             <Typography
               sx={{ color: "#AFAFE8", fontSize: "7px", textAlign: "center" }}
             >

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import InputMask from "react-input-mask";
 import {
   Box,
   Button,
@@ -198,13 +199,22 @@ const CreateAccountForm = ({ accountDetails, setAccountDetails, submit }) => {
                     </Box>
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
+                    <InputMask
+                      mask="999-999-9999"
                       value={accountDetails.number}
                       onChange={handlePhoneNumberChanged}
-                      placeholder="Enter a valid phone number"
-                      variant="outlined"
-                      fullWidth
-                    />
+                      disabled={false}
+                      alwaysShowMask={false}
+                      maskChar="_"
+                    >
+                      {() => (
+                        <TextField
+                          placeholder="Enter a valid phone number"
+                          variant="outlined"
+                          fullWidth
+                        />
+                      )}
+                    </InputMask>
                   </Grid>
                 </Grid>
               </Grid>

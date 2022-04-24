@@ -51,7 +51,7 @@ function StepIcon(props) {
 }
 
 function Start() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(2);
   const [completedSteps, setCompletedSteps] = useState({});
   const [loading, setLoading] = useState(false);
   const [loadingProps, setLoadingProps] = useState({
