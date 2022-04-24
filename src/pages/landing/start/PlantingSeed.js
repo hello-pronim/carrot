@@ -14,34 +14,28 @@ const Text = styled(Typography)`
   font-weight: bold;
   line-height: 16px;
 `;
-function Loading({ data, children }) {
-  const { image, title, description } = data;
-
+function Loading() {
   return (
     <Grid container spacing={4}>
-      {image && (
-        <Grid item xs={12}>
-          <Grid container justifyContent="center">
-            <Grid item>
-              <img src={image} alt="loading" />
-            </Grid>
-          </Grid>
-        </Grid>
-      )}
       <Grid item xs={12}>
         <Grid container justifyContent="center">
-          <Title>{title}</Title>
-        </Grid>
-      </Grid>
-      {description && (
-        <Grid item xs={12}>
-          <Grid container justifyContent="center">
-            <Text>{description}</Text>
+          <Grid item>
+            <img src="static/img/carrot.png" alt="loading" />
           </Grid>
         </Grid>
-      )}
+      </Grid>
       <Grid item xs={12}>
-        {children}
+        <Grid container justifyContent="center">
+          <Title>Planting the Seed...</Title>
+        </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <Grid container justifyContent="center">
+          <Text>
+            We're putting a schedule together based on your project details. Sit
+            tight.
+          </Text>
+        </Grid>
       </Grid>
     </Grid>
   );

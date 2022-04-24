@@ -26,8 +26,8 @@ const components = {
           fontSize: "18px",
           lineHeight: "21px",
           borderRadius: "7px",
-          border: "2px solid #D7D7F2",
-          color: "#D7D7F2",
+          border: "2px solid #AFAFE8",
+          color: "#AFAFE8",
           filter: "drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25))",
           "&:hover": {
             borderWidth: 2,

@@ -8,11 +8,12 @@ import StepConnector from "../../../components/common/stepConnector";
 import StepIconRoot from "../../../components/common/stepIcon";
 
 import Basics from "./basics";
-import Loading from "../Loading";
+import PlantingSeed from "./PlantingSeed";
 import Plan from "./plan";
 import Subscribe from "./subscribe";
+import SubscriptionSuccess from "./SubscriptionSuccess";
 
-const LoadingWrapper = styled.div`
+const PageWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,14 +52,10 @@ function StepIcon(props) {
 }
 
 function Start() {
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(3);
   const [completedSteps, setCompletedSteps] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [loadingProps, setLoadingProps] = useState({
-    image: "",
-    title: "",
-    description: "",
-  });
+  const [plantingSeed, setPlantingSeed] = useState(false);
+  const [subscriptionSuccess, setSubscriptionSuccess] = useState(false);
   const [jobDetails, setJobDetails] = useState({ projectType: "website" });
 
   const handleBack = () => {
@@ -78,15 +75,9 @@ function Start() {
     setJobDetails(details);
     if (canGoNext()) {
       handleStepComplete();
-      setLoadingProps({
-        image: "static/img/carrot.png",
-        title: "Planting the Seed...",
-        description:
-          "We're putting a schedule together based on your project details. Sit tight.",
-      });
-      setLoading(true);
+      setPlantingSeed(true);
       const timer = setTimeout(() => {
-        setLoading(false);
+        setPlantingSeed(false);
       }, 3000);
       return () => clearTimeout(timer);
     }
@@ -97,6 +88,10 @@ function Start() {
     }
   };
   const handleSubscriptionSubmit = () => {
+    setSubscriptionSuccess(true);
+  };
+  const handleLoginClicked = () => {
+    setSubscriptionSuccess(false);
     if (canGoNext()) {
       handleStepComplete();
     }
@@ -158,14 +153,18 @@ function Start() {
                 <Spacer mb={8} />
               </Grid>
             </StepperWrapper>
-            {!loading ? (
+            {plantingSeed ? (
+              <PageWrapper>
+                <PlantingSeed />
+              </PageWrapper>
+            ) : subscriptionSuccess ? (
+              <PageWrapper>
+                <SubscriptionSuccess submit={handleLoginClicked} />
+              </PageWrapper>
+            ) : (
               <StepperContentWrapper>
                 {renderStepContent()}
               </StepperContentWrapper>
-            ) : (
-              <LoadingWrapper>
-                <Loading data={loadingProps} />
-              </LoadingWrapper>
             )}
           </Wrapper>
         </Grid>
