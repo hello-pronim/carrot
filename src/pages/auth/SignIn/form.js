@@ -36,8 +36,8 @@ function SignInForm() {
   return (
     <Formik
       initialValues={{
-        email: "",
-        password: "",
+        email: "test@carrot.com",
+        password: "testuser123!",
         submit: false,
       }}
       validationSchema={Yup.object().shape({
