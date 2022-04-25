@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
 
-import { Button as MuiButton, Grid } from "@mui/material";
+import { Box, Button as MuiButton, Grid, Typography } from "@mui/material";
 import { spacing } from "@mui/system";
 
 import RadioButton from "../../../../components/common/radioButton";
@@ -89,13 +89,23 @@ function Basics({ handleSubmit }) {
         {!isOverview ? (
           <Grid container spacing={8}>
             <Grid item xs={12}>
-              <RadioButton
-                label="Project Type"
-                data={projectTypes}
-                selected={selectedProjectType}
-                setSelected={setSelectedProjectType}
-                variant="contained"
-              />
+              <Grid container spacing={4}>
+                <Grid item xs={12}>
+                  <Box pl={4}>
+                    <Typography variant="h3" color="primary">
+                      Project Type
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <RadioButton
+                    data={projectTypes}
+                    selected={selectedProjectType}
+                    setSelected={setSelectedProjectType}
+                    variant="contained"
+                  />
+                </Grid>
+              </Grid>
             </Grid>
             <Grid item xs={12}>
               {renderEditableProjectDetail()}

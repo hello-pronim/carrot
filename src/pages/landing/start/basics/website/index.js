@@ -60,32 +60,62 @@ const Website = ({ jobDetails, update }) => {
   return (
     <Grid container spacing={8}>
       <Grid item xs={12}>
-        <RadioButton
-          label="Platform Assistance"
-          data={platforms.filter(
-            (platform) => platform.projectType === "website"
-          )}
-          selected={jobDetails.platform}
-          setSelected={handlePlatformChanged}
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Platform Assistance
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <RadioButton
+              data={platforms.filter(
+                (platform) => platform.projectType === "website"
+              )}
+              selected={jobDetails.platform}
+              setSelected={handlePlatformChanged}
+            />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
-        <RadioButton
-          label="Completion Status"
-          data={completionStatus["website"]}
-          selected={jobDetails.completionStatus}
-          setSelected={handleCompletionStatusChanged}
-          variant="text"
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Completion Status
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <RadioButton
+              data={completionStatus["website"]}
+              selected={jobDetails.completionStatus}
+              setSelected={handleCompletionStatusChanged}
+              variant="text"
+            />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
-        <TextArea
-          label="Description"
-          value={jobDetails.description}
-          onChange={handleDescriptionChanged}
-          rows={10}
-          size="small"
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Description
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <TextArea
+              value={jobDetails.description}
+              onChange={handleDescriptionChanged}
+              rows={10}
+              size="small"
+            />
+          </Grid>
+        </Grid>
         <Grid container>
           <Grid item xs={12}>
             <Box pl={4} pt={4}>
@@ -114,25 +144,53 @@ const Website = ({ jobDetails, update }) => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <RadioButton
-          label="Budget"
-          data={budgets}
-          selected={jobDetails.budget}
-          setSelected={handleBudgetChanged}
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Budget
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <RadioButton
+              data={budgets}
+              selected={jobDetails.budget}
+              setSelected={handleBudgetChanged}
+            />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <RadioButton
-              label="Features Needed"
-              description="(Select all that apply)"
-              data={features["website"]}
-              selected={jobDetails.features}
-              setSelected={handleFeaturesChanged}
-              variant="text"
-              mode="multiple"
-            />
+            <Grid container spacing={4}>
+              <Grid item xs={12}>
+                <Box pl={4}>
+                  <Grid container alignItems="center" spacing={2}>
+                    <Grid item>
+                      <Typography variant="h3" color="primary">
+                        Features Needed
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="h6" color="common.black">
+                        (Select all that apply)
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <RadioButton
+                  data={features["website"]}
+                  selected={jobDetails.features}
+                  setSelected={handleFeaturesChanged}
+                  variant="text"
+                  mode="multiple"
+                />
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item xs={12}>
             <Box pl={4}>
@@ -189,14 +247,24 @@ const Website = ({ jobDetails, update }) => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <TextArea
-          label="Special Requests"
-          placeholder="Is there anything else  we missed? Don't hold back"
-          value={jobDetails.specialRequests}
-          onChange={handleSpecialRequestsChanged}
-          rows={10}
-          size="small"
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Special Requests
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <TextArea
+              placeholder="Is there anything else  we missed? Don't hold back"
+              value={jobDetails.specialRequests}
+              onChange={handleSpecialRequestsChanged}
+              rows={10}
+              size="small"
+            />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

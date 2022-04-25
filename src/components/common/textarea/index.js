@@ -1,31 +1,18 @@
 import React from "react";
 
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { TextField } from "@mui/material";
 
-const TextArea = ({ label, placeholder = "", value, onChange, ...props }) => {
+const TextArea = ({ placeholder = "", value, onChange, ...props }) => {
   return (
-    <Grid container spacing={4}>
-      {label && (
-        <Grid item xs={12}>
-          <Box pl={4}>
-            <Typography variant="h3" color="primary">
-              {label}
-            </Typography>
-          </Box>
-        </Grid>
-      )}
-      <Grid item xs={12}>
-        <TextField
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          variant="outlined"
-          multiline
-          fullWidth
-          {...props}
-        />
-      </Grid>
-    </Grid>
+    <TextField
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      variant="outlined"
+      multiline
+      fullWidth
+      {...props}
+    />
   );
 };
 

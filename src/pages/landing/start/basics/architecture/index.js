@@ -68,46 +68,96 @@ const Architecture = ({ jobDetails, update }) => {
   return (
     <Grid container spacing={8}>
       <Grid item xs={12}>
-        <RadioButton
-          label="Type of Construction"
-          data={constructionTypes}
-          selected={jobDetails.constructionType}
-          setSelected={handleConstructionTypeChanged}
-          variant="text"
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Type of Construction
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <RadioButton
+              data={constructionTypes}
+              selected={jobDetails.constructionType}
+              setSelected={handleConstructionTypeChanged}
+              variant="text"
+            />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
-        <RadioButton
-          label="Size of Building"
-          data={buildingSizes}
-          selected={jobDetails.buildingSize}
-          setSelected={handleBuildingSizeChanged}
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Size of Building
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <RadioButton
+              data={buildingSizes}
+              selected={jobDetails.buildingSize}
+              setSelected={handleBuildingSizeChanged}
+            />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
-        <RadioButton
-          label="Services Required"
-          data={services}
-          selected={jobDetails.service}
-          setSelected={handleServiceChanged}
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Services Required
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <RadioButton
+              data={services}
+              selected={jobDetails.service}
+              setSelected={handleServiceChanged}
+            />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
-        <RadioButton
-          label="Engineer Approval/Sign Off"
-          data={engineerApprovalAndSignOff}
-          selected={jobDetails.isEngineerApprovalRequired}
-          setSelected={handleEngineerApprovalRequiredChanged}
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Engineer Approval/Sign Off
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <RadioButton
+              data={engineerApprovalAndSignOff}
+              selected={jobDetails.isEngineerApprovalRequired}
+              setSelected={handleEngineerApprovalRequiredChanged}
+            />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
-        <TextArea
-          label="Description"
-          value={jobDetails.description}
-          onChange={handleDescriptionChanged}
-          rows={10}
-          size="small"
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Description
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <TextArea
+              value={jobDetails.description}
+              onChange={handleDescriptionChanged}
+              rows={10}
+              size="small"
+            />
+          </Grid>
+        </Grid>
         <Grid container>
           <Grid item xs={12}>
             <Box pl={4} pt={4}>
@@ -136,12 +186,22 @@ const Architecture = ({ jobDetails, update }) => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <RadioButton
-          label="Budget"
-          data={budgets}
-          selected={jobDetails.budget}
-          setSelected={handleBudgetChanged}
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Budget
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <RadioButton
+              data={budgets}
+              selected={jobDetails.budget}
+              setSelected={handleBudgetChanged}
+            />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={4}>
@@ -177,14 +237,24 @@ const Architecture = ({ jobDetails, update }) => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <TextArea
-          label="Special Requests"
-          placeholder="Is there anything else  we missed? Don't hold back"
-          value={jobDetails.setSpecialRequests}
-          onChange={handleSpecialRequestsChanged}
-          rows={10}
-          size="small"
-        />
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <Box pl={4}>
+              <Typography variant="h3" color="primary">
+                Special Requests
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <TextArea
+              placeholder="Is there anything else  we missed? Don't hold back"
+              value={jobDetails.setSpecialRequests}
+              onChange={handleSpecialRequestsChanged}
+              rows={10}
+              size="small"
+            />
+          </Grid>
+        </Grid>
       </Grid>
     </Grid>
   );

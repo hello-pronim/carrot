@@ -1,15 +1,13 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 
 const ButtonTypography = styled(Typography)`
   color: inherit;
 `;
 
 const RadioButton = ({
-  label = "Please select",
-  description,
   data,
   selected,
   setSelected,
@@ -35,65 +33,34 @@ const RadioButton = ({
 
   return (
     <Grid container spacing={4}>
-      <Grid item xs={12}>
-        <Box pl={4}>
-          <Grid container alignItems="center" spacing={2}>
-            <Grid item>
-              <Typography variant="h3" color="primary">
-                {label}
-              </Typography>
-            </Grid>
-            {description && (
-              <Grid item>
-                <Typography
-                  variant="h6"
-                  color="secondary"
-                  sx={{ fontWeight: 400, fontStyle: "italic" }}
-                >
-                  {description}
-                </Typography>
+      {data.map((item) => (
+        <Grid key={item.value} item xs={4}>
+          <Button
+            onClick={() => handleSelect(item.value)}
+            color={isSelected(item.value) ? "primary" : "secondary"}
+            sx={{
+              fontWeight: isSelected(item.value) && "bold",
+            }}
+            variant={variant}
+            fullWidth
+          >
+            <Grid container direction="column" alignItems="center" spacing={4}>
+              <Grid item xs={12}>
+                <ButtonTypography sx={{ fontWeight: "bold" }}>
+                  {item.title}
+                </ButtonTypography>
               </Grid>
-            )}
-          </Grid>
-        </Box>
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container spacing={8}>
-          {data.map((item) => (
-            <Grid key={item.value} item xs={4}>
-              <Button
-                onClick={() => handleSelect(item.value)}
-                color={isSelected(item.value) ? "primary" : "secondary"}
-                sx={{
-                  fontWeight: isSelected(item.value) && "bold",
-                }}
-                variant={variant}
-                fullWidth
-              >
-                <Grid
-                  container
-                  direction="column"
-                  alignItems="center"
-                  spacing={4}
-                >
-                  <Grid item xs={12}>
-                    <ButtonTypography sx={{ fontWeight: "bold" }}>
-                      {item.title}
-                    </ButtonTypography>
-                  </Grid>
-                  {item.description && (
-                    <Grid item xs={12}>
-                      <ButtonTypography sx={{ fontStyle: "italic" }}>
-                        {item.description}
-                      </ButtonTypography>
-                    </Grid>
-                  )}
+              {item.description && (
+                <Grid item xs={12}>
+                  <ButtonTypography sx={{ fontStyle: "italic" }}>
+                    {item.description}
+                  </ButtonTypography>
                 </Grid>
-              </Button>
+              )}
             </Grid>
-          ))}
+          </Button>
         </Grid>
-      </Grid>
+      ))}
     </Grid>
   );
 };
