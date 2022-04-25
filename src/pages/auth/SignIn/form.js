@@ -24,8 +24,8 @@ const Alert = styled(MuiAlert)(spacing);
 
 const TextField = styled(MuiTextField)(spacing);
 
-function SignInForm() {
-  const { signIn, needVerify } = useAuth();
+function SignInForm({ submit }) {
+  const { signIn } = useAuth();
   const navigate = useNavigate();
   const [remembered, setRemembered] = useState(false);
   const defaultSignInFormValues = {
@@ -42,9 +42,9 @@ function SignInForm() {
     { setErrors, setStatus, setSubmitting }
   ) => {
     try {
-      await signIn(values.email, values.password);
+      // await signIn(values.email, values.password);
 
-      navigate("/private");
+      submit();
     } catch (error) {
       const message = error.message || "Something went wrong";
 
@@ -57,13 +57,13 @@ function SignInForm() {
   return (
     <Formik
       initialValues={defaultSignInFormValues}
-      validationSchema={Yup.object().shape({
-        email: Yup.string()
-          .email("Must be a valid email")
-          .max(255)
-          .required("Email is required"),
-        password: Yup.string().max(255).required("Password is required"),
-      })}
+      // validationSchema={Yup.object().shape({
+      //   email: Yup.string()
+      //     .email("Must be a valid email")
+      //     .max(255)
+      //     .required("Email is required"),
+      //   password: Yup.string().max(255).required("Password is required"),
+      // })}
       onSubmit={handleSubmit}
     >
       {({

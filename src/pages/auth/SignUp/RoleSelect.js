@@ -103,7 +103,7 @@ function RoleSelect({ roles, selected, submit }) {
                 variant="contained"
                 color="primary"
               >
-                Next
+                NEXT
               </Button>
             </Grid>
           </Grid>

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TeamJoin() {
+function TeamJoin({ submit }) {
   const classes = useStyles();
   const opportunities = [
     "ZERO Job Interviews",
@@ -88,7 +88,7 @@ function TeamJoin() {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          <SignUpForm />
+          <SignUpForm submit={submit} />
         </Grid>
       </Grid>
     </React.Fragment>

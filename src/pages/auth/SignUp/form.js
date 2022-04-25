@@ -24,7 +24,7 @@ import { expertise, positions } from "./mock";
 
 const Alert = styled(MuiAlert)(spacing);
 
-function SignUpForm() {
+function SignUpForm({ submit }) {
   const { signUp } = useAuth();
   const navigate = useNavigate();
   const defaultSignUpFormValues = {
@@ -42,8 +42,9 @@ function SignUpForm() {
     { setErrors, setStatus, setSubmitting }
   ) => {
     try {
-      signUp(values.email, values.password, values.firstName, values.lastName);
-      navigate("/auth/sign-in");
+      // signUp(values.email, values.password, values.firstName, values.lastName);
+      // navigate("/auth/sign-in");
+      submit(values);
     } catch (error) {
       const message = error.message || "Something went wrong";
 
@@ -56,12 +57,12 @@ function SignUpForm() {
   return (
     <Formik
       initialValues={defaultSignUpFormValues}
-      validationSchema={Yup.object().shape({
-        firstName: Yup.string().max(255).required("First name is required"),
-        lastName: Yup.string().max(255).required("Last name is required"),
-        position: Yup.string().required("Desired position is required"),
-        expertise: Yup.string().required("Expertise is required"),
-      })}
+      // validationSchema={Yup.object().shape({
+      //   firstName: Yup.string().max(255).required("First name is required"),
+      //   lastName: Yup.string().max(255).required("Last name is required"),
+      //   position: Yup.string().required("Desired position is required"),
+      //   expertise: Yup.string().required("Expertise is required"),
+      // })}
       onSubmit={handleSubmit}
     >
       {({
@@ -75,12 +76,14 @@ function SignUpForm() {
         values,
       }) => (
         <form noValidate onSubmit={handleSubmit}>
-          {errors.submit && (
-            <Alert mt={2} mb={1} severity="warning">
-              {errors.submit}
-            </Alert>
-          )}
           <Grid container spacing={8}>
+            {errors.submit && (
+              <Grid item xs={12}>
+                <Alert mt={2} mb={1} severity="warning">
+                  {errors.submit}
+                </Alert>
+              </Grid>
+            )}
             <Grid item xs={12}>
               <Grid container spacing={8}>
                 <Grid item xs={6}>
