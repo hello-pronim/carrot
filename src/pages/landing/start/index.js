@@ -10,6 +10,7 @@ import StepIconRoot from "../../../components/common/stepIcon";
 import Basics from "./basics";
 import PlantingSeed from "./PlantingSeed";
 import Plan from "./plan";
+import SignIn from "./signin";
 import Subscribe from "./subscribe";
 import SubscriptionSuccess from "./SubscriptionSuccess";
 
@@ -118,6 +119,8 @@ function Start() {
         handleBack={handleBack}
         handleSubmit={handleSubscriptionSubmit}
       ></Subscribe>
+    ) : activeStep === 3 ? (
+      <SignIn />
     ) : (
       <></>
     );

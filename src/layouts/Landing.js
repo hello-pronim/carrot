@@ -15,16 +15,16 @@ import AppBar from "../pages/landing/AppBar";
 const Root = styled.div`
   display: flex;
   min-height: 100vh;
+  background-image: url(static/img/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 100%;
 `;
 
 const AppContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-image: url(static/img/background.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 100% 100%;
   height: 100vh;
 `;
 

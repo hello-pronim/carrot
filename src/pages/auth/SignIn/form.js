@@ -1,34 +1,43 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
+import styled from "styled-components/macro";
+import { useNavigate } from "react-router-dom";
 
 import {
   Alert as MuiAlert,
+  Box,
+  Button,
   Checkbox,
   FormControlLabel,
-  Button,
+  Grid,
   TextField as MuiTextField,
+  Typography,
 } from "@mui/material";
 import { spacing } from "@mui/system";
 
 import useAuth from "../../../hooks/useAuth";
+
+import Link from "../../../components/common/link";
 
 const Alert = styled(MuiAlert)(spacing);
 
 const TextField = styled(MuiTextField)(spacing);
 
 function SignInForm() {
-  const navigate = useNavigate();
   const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const [remembered, setRemembered] = useState(false);
+
+  const handleRememberChange = (e, checked) => {
+    setRemembered(checked);
+  };
 
   return (
     <Formik
       initialValues={{
-        email: "demo@bootlab.io",
-        password: "unsafepassword",
+        email: "",
+        password: "",
         submit: false,
       }}
       validationSchema={Yup.object().shape({
@@ -62,60 +71,119 @@ function SignInForm() {
         values,
       }) => (
         <form noValidate onSubmit={handleSubmit}>
-          <Alert mt={3} mb={3} severity="info">
-            Use <strong>demo@bootlab.io</strong> and{" "}
-            <strong>unsafepassword</strong> to sign in
-          </Alert>
-          {errors.submit && (
-            <Alert mt={2} mb={3} severity="warning">
-              {errors.submit}
-            </Alert>
-          )}
-          <TextField
-            type="email"
-            name="email"
-            label="Email Address"
-            value={values.email}
-            error={Boolean(touched.email && errors.email)}
-            fullWidth
-            helperText={touched.email && errors.email}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            my={2}
-          />
-          <TextField
-            type="password"
-            name="password"
-            label="Password"
-            value={values.password}
-            error={Boolean(touched.password && errors.password)}
-            fullWidth
-            helperText={touched.password && errors.password}
-            onBlur={handleBlur}
-            onChange={handleChange}
-            my={2}
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            disabled={isSubmitting}
-          >
-            Sign in
-          </Button>
-          <Button
-            component={Link}
-            to="/auth/reset-password"
-            fullWidth
-            color="primary"
-          >
-            Forgot password
-          </Button>
+          <Grid container spacing={4}>
+            {errors.submit && (
+              <Grid item xs={12}>
+                <Alert mt={2} mb={3} severity="warning">
+                  {errors.submit}
+                </Alert>
+              </Grid>
+            )}
+            <Grid item xs={12}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Box pl={4}>
+                    <Typography variant="h6" color="secondary">
+                      Username
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    type="email"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={Boolean(touched.email && errors.email)}
+                    helperText={touched.email && errors.email}
+                    fullWidth
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Box pl={4}>
+                    <Typography variant="h6" color="secondary">
+                      Password
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    type="password"
+                    name="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={Boolean(touched.password && errors.password)}
+                    helperText={touched.password && errors.password}
+                    fullWidth
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container alignItems="center" spacing={8}>
+                <Grid item>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        value={remembered}
+                        onChange={handleRememberChange}
+                        color="secondary"
+                      />
+                    }
+                    label="Remember me"
+                  />
+                </Grid>
+                <Grid item>
+                  <Typography variant="h6">
+                    <Link to="/auth/reset-password" color="secondary">
+                      Forgot Password?
+                    </Link>
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid
+                container
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Grid item>
+                  {!remembered && (
+                    <Typography variant="h6" color="secondary">
+                      No Account? <Link to="/auth/sign-up">Sign Up</Link>
+                    </Typography>
+                  )}
+                </Grid>
+                <Grid item>
+                  <Grid container spacing={4}>
+                    <Grid item>
+                      <Button variant="outlined" color="secondary">
+                        Clear
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        disabled={isSubmitting}
+                        fullWidth
+                      >
+                        LOGIN
+                      </Button>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
         </form>
       )}
     </Formik>

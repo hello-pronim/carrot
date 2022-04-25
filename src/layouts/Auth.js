@@ -2,19 +2,33 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components/macro";
 
-import { CssBaseline } from "@mui/material";
+import { Container, CssBaseline } from "@mui/material";
 
-import Settings from "../components/Settings";
 import GlobalStyle from "../components/GlobalStyle";
 
+import AppBar from "../pages/landing/AppBar";
+
 const Root = styled.div`
-  max-width: 520px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
   display: flex;
-  min-height: 100%;
+  min-height: 100vh;
+  background-image: url(static/img/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 100%;
+`;
+
+const AuthContent = styled.div`
+  flex: 1;
+  display: flex;
   flex-direction: column;
+  height: 100vh;
+`;
+
+const ScrollableContent = styled.div`
+  overflow-y: scroll;
+  height: calc(100vh - 64px);
+  padding-top: 108px;
+  padding-bottom: 108px;
 `;
 
 const Auth = ({ children }) => {
@@ -22,9 +36,15 @@ const Auth = ({ children }) => {
     <Root>
       <CssBaseline />
       <GlobalStyle />
-      {children}
-      <Outlet />
-      <Settings />
+      <AuthContent>
+        <AppBar />
+        <Container>
+          <ScrollableContent>
+            {children}
+            <Outlet />
+          </ScrollableContent>
+        </Container>
+      </AuthContent>
     </Root>
   );
 };
