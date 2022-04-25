@@ -1,43 +1,44 @@
-import React from "react";
-import styled from "styled-components/macro";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { Paper, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 
-import { ReactComponent as Logo } from "../../../vendor/logo.svg";
-import SignUpForm from "./form";
-
-const Brand = styled(Logo)`
-  fill: ${(props) => props.theme.palette.primary.main};
-  width: 64px;
-  height: 64px;
-  margin-bottom: 32px;
-`;
-
-const Wrapper = styled(Paper)`
-  padding: ${(props) => props.theme.spacing(6)};
-
-  ${(props) => props.theme.breakpoints.up("md")} {
-    padding: ${(props) => props.theme.spacing(10)};
-  }
-`;
+import SignUpForm from "./Form";
+import RoleSelect from "./RoleSelect";
 
 function SignUp() {
+  const [selectedRole, setSelectedRole] = useState("pro");
+  const [roleSubmitted, setRoleSubmitted] = useState(false);
+  const roles = [
+    { value: "pro", name: "Pro" },
+    { value: "client", name: "Client" },
+  ];
+
+  const handleRoleSubmit = (role) => {
+    setSelectedRole(role);
+    setRoleSubmitted(true);
+  };
+
   return (
     <React.Fragment>
-      <Brand />
-      <Wrapper>
-        <Helmet title="Sign Up" />
-
-        <Typography component="h1" variant="h4" align="center" gutterBottom>
-          Get started
-        </Typography>
-        <Typography component="h2" variant="body1" align="center">
-          Start creating the best possible user experience for you customers
-        </Typography>
-
-        <SignUpForm />
-      </Wrapper>
+      <Helmet title="Sign Up" />
+      <Grid container justifyContent="center">
+        <Grid item xs={6}>
+          <Grid container>
+            <Grid item xs={12}>
+              {!roleSubmitted ? (
+                <RoleSelect
+                  roles={roles}
+                  selected={selectedRole}
+                  submit={handleRoleSubmit}
+                />
+              ) : (
+                <SignUpForm />
+              )}
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 }

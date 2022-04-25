@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 
-import SignInForm from "../../../auth/signin/form";
+import SignInForm from "../../../auth/signin/Form";
 
 const Login = () => {
   return (

@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 
 import { Box, Grid, Typography } from "@mui/material";
 
-import SignInForm from "./form";
+import SignInForm from "./Form";
 
 import Logo from "../../../vendor/logo.png";
 

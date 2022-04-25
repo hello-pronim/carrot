@@ -25,7 +25,7 @@ const Alert = styled(MuiAlert)(spacing);
 const TextField = styled(MuiTextField)(spacing);
 
 function SignInForm() {
-  const { signIn } = useAuth();
+  const { signIn, needVerify } = useAuth();
   const navigate = useNavigate();
   const [remembered, setRemembered] = useState(false);
   const defaultSignInFormValues = {
