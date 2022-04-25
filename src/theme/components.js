@@ -215,9 +215,10 @@ const components = {
         "&.MuiToggleButton-primary": {
           color: "#FFF",
           backgroundColor: "#FD9827",
-          "&:hover": {
-            backgroundColor: "#B16A1B",
-          },
+        },
+        "&.MuiToggleButton-secondary": {
+          color: "#FFF",
+          backgroundColor: "#9797DD",
         },
         "&.MuiToggleButtonGroup-grouped:not(:last-of-type)": {
           borderRight: "3px solid #FFF",

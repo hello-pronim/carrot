@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { Box, Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 
-import SignUpForm from "./Form";
 import RoleSelect from "./RoleSelect";
+import TeamJoin from "./TeamJoin";
 
 function SignUp() {
   const [selectedRole, setSelectedRole] = useState("pro");
@@ -33,7 +33,7 @@ function SignUp() {
                   submit={handleRoleSubmit}
                 />
               ) : (
-                <SignUpForm />
+                <TeamJoin />
               )}
             </Grid>
           </Grid>
