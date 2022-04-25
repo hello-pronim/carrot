@@ -28,18 +28,35 @@ function SignInForm() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const [remembered, setRemembered] = useState(false);
+  const defaultSignInFormValues = {
+    email: "test@carrot.com",
+    password: "testuser123!",
+    submit: false,
+  };
 
   const handleRememberChange = (e, checked) => {
     setRemembered(checked);
   };
+  const handleSubmit = async (
+    values,
+    { setErrors, setStatus, setSubmitting }
+  ) => {
+    try {
+      await signIn(values.email, values.password);
+
+      navigate("/private");
+    } catch (error) {
+      const message = error.message || "Something went wrong";
+
+      setStatus({ success: false });
+      setErrors({ submit: message });
+      setSubmitting(false);
+    }
+  };
 
   return (
     <Formik
-      initialValues={{
-        email: "test@carrot.com",
-        password: "testuser123!",
-        submit: false,
-      }}
+      initialValues={defaultSignInFormValues}
       validationSchema={Yup.object().shape({
         email: Yup.string()
           .email("Must be a valid email")
@@ -47,19 +64,7 @@ function SignInForm() {
           .required("Email is required"),
         password: Yup.string().max(255).required("Password is required"),
       })}
-      onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-        try {
-          await signIn(values.email, values.password);
-
-          navigate("/private");
-        } catch (error) {
-          const message = error.message || "Something went wrong";
-
-          setStatus({ success: false });
-          setErrors({ submit: message });
-          setSubmitting(false);
-        }
-      }}
+      onSubmit={handleSubmit}
     >
       {({
         errors,
@@ -67,6 +72,7 @@ function SignInForm() {
         handleChange,
         handleSubmit,
         isSubmitting,
+        resetForm,
         touched,
         values,
       }) => (
@@ -164,7 +170,11 @@ function SignInForm() {
                 <Grid item>
                   <Grid container spacing={4}>
                     <Grid item>
-                      <Button variant="outlined" color="secondary">
+                      <Button
+                        onClick={resetForm}
+                        variant="outlined"
+                        color="secondary"
+                      >
                         Clear
                       </Button>
                     </Grid>
