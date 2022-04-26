@@ -17,6 +17,7 @@ const TextField = styled(MuiTextField)`
     width: 80px;
     height: 80px;
     font-size: 80px;
+    text-align: center;
   }
 `;
 
@@ -31,6 +32,10 @@ function VerifyAccount({ submit }) {
   const codeRefs = Array(codeLength)
     .fill(0)
     .map((_, i) => createRef());
+
+  useEffect(() => {
+    codeRefs[0].current.focus();
+  }, []);
 
   useEffect(() => {
     let interval;
