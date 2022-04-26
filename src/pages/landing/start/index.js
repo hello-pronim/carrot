@@ -53,7 +53,7 @@ function StepIcon(props) {
 }
 
 function Start() {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(3);
   const [completedSteps, setCompletedSteps] = useState({});
   const [plantingSeed, setPlantingSeed] = useState(false);
   const [subscriptionSuccess, setSubscriptionSuccess] = useState(false);
