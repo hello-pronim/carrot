@@ -5,7 +5,7 @@ import SignInForm from "../../../auth/signin/Form";
 import VerifyAccount from "../../../auth/signin/VerifyAccount";
 
 const Login = () => {
-  const [sentCode, setSentCode] = useState(true);
+  const [sentCode, setSentCode] = useState(false);
 
   const handleSubmit = () => {
     setSentCode(true);
