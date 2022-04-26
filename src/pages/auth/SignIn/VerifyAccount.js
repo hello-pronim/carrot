@@ -29,13 +29,14 @@ function VerifyAccount({ submit }) {
   const [code, setCode] = useState("");
   const [expiredTime, setExpiredTime] = useState(defaultExpiredTime);
   const [codeExpired, setCodeExpired] = useState(false);
+  const [focusedCodeIndex, setFocusedCodeIndex] = useState(0);
   const codeRefs = Array(codeLength)
     .fill(0)
     .map((_, i) => createRef());
 
   useEffect(() => {
-    codeRefs[0].current.focus();
-  }, []);
+    codeRefs[focusedCodeIndex].current.focus();
+  }, [focusedCodeIndex]);
 
   useEffect(() => {
     let interval;
@@ -60,17 +61,26 @@ function VerifyAccount({ submit }) {
     );
   };
   const handleCodeChanged = (e, index) => {
+    console.log(e, e.target.value, e.keyCode);
     const regex = /[0-9]+/g;
 
     if (e.target.value === "" || regex.test(e.target.value)) {
       const newCode = replaceChartAt(code.padEnd(4, ""), index, e.target.value);
 
       setCode(newCode);
-      if (codeRefs[index + 1]) codeRefs[index + 1].current.focus();
+      if (codeRefs[index + 1]) {
+        setFocusedCodeIndex(index + 1);
+      }
     }
   };
-  const handleClear = () => {};
+  const handleClear = () => {
+    setCode("");
+    setFocusedCodeIndex(0);
+    setExpiredTime(defaultExpiredTime);
+  };
   const handleResendCode = () => {
+    setCode("");
+    setFocusedCodeIndex(0);
     setExpiredTime(defaultExpiredTime);
   };
   const displayExpiredTime = () => {
